@@ -15,6 +15,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-f
 #brand{position:absolute;left:56px;top:46px;font-size:30px;font-weight:700;color:#fff;letter-spacing:2px;opacity:.95}
 #brand span{display:inline-block;background:#fff;color:var(--red);border-radius:10px;padding:2px 14px;margin-right:12px}
 #title{position:absolute;left:56px;top:108px;font-size:66px;line-height:1.18;font-weight:900;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.12)}
+#note{position:absolute;left:56px;top:284px;font-size:22px;font-weight:500;color:#fff;opacity:.85}
 #tname{position:absolute;right:52px;top:262px;width:260px;text-align:center;font-size:28px;font-weight:700;color:#fff}
 #tname small{display:block;font-size:22px;font-weight:500;opacity:.9}
 #pip{position:absolute;left:792px;top:22px;width:240px;height:240px;border-radius:50%;border:6px solid #fff;overflow:hidden;background:#ddd;box-shadow:0 8px 24px rgba(0,0,0,.25)}
@@ -59,6 +60,7 @@ svg text{font-family:"KaTeX_Main","Noto Sans SC",serif}
   <div id="title">妙解绝对值<br>函数最值问题</div>
   <div id="pip"><img id="pipimg" src=""></div>
   <div id="onair">课堂原声 ▶</div>
+  <div id="note"></div>
   <div id="tname">胡源老师<small>北大元培 · 高考状元</small></div>
 </div>
 <div id="card"><div><span id="qno"></span><span id="qsrc"></span></div><div id="problem"></div></div>
@@ -83,6 +85,7 @@ window.setup=function(tl){
   document.getElementById('qsrc').textContent=tl.qsrc||'';
   document.getElementById('problem').innerHTML=tex(tl.problem);
   document.getElementById('pipimg').src=tl.pip;
+  document.getElementById('note').textContent=tl.note||'';
   flow=document.getElementById('flow'); panel=document.getElementById('panel');
   const card=document.getElementById('card');
   panel.style.top=(card.offsetTop+card.offsetHeight+26)+'px';
@@ -155,7 +158,7 @@ window.render=function(t){
   // subtitles
   const sub=document.getElementById('sub'); let cur=null;
   for(const s of TL.subs){if(t>=s.t&&t<s.e){cur=s;break}}
-  if(cur){sub.style.opacity=1; if(sub._k!==cur.k){sub.innerHTML=(cur.who?`<span class="who" style="background:${cur.teacher?'#ffb100;color:#5a2a00':'#e8392f'}">${cur.who}</span>`:'')+tex(cur.text);sub._k=cur.k}} else sub.style.opacity=0;
+  if(cur){sub.style.opacity=1; if(sub._k!==cur.k){sub.innerHTML=(cur.who?`<span class="who" style="background:${cur.teacher?'#ffb100;color:#5a2a00':cur.ai?'#2f6fe8':'#e8392f'}">${cur.who}</span>`:'')+tex(cur.text);sub._k=cur.k}} else sub.style.opacity=0;
   // on-air badge for teacher's original audio
   let air=false; for(const s of TL.teacher){if(t>=s.t&&t<s.e)air=true}
   document.getElementById('onair').style.opacity=air?1:0;
