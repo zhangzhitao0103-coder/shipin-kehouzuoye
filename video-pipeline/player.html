@@ -1,0 +1,183 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="node_modules/katex/dist/katex.min.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/900.css">
+<script src="node_modules/katex/dist/katex.min.js"></script>
+<style>
+:root{--red:#e8392f;--red2:#c4211b;--ink:#1f2330;--muted:#6b7080;--bg:#fff6f2;--blue:#2f6fe8;--green:#16a36a;--gold:#ffb100}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:"Noto Sans SC",sans-serif;color:var(--ink)}
+.katex{font-size:1.08em}
+#header{position:absolute;left:0;top:0;width:1080px;height:330px;background:linear-gradient(135deg,#f04a3a 0%,#d32a20 60%,#b81d16 100%);overflow:hidden}
+#header::after{content:"";position:absolute;right:-120px;bottom:-160px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.07)}
+#brand{position:absolute;left:56px;top:46px;font-size:30px;font-weight:700;color:#fff;letter-spacing:2px;opacity:.95}
+#brand span{display:inline-block;background:#fff;color:var(--red);border-radius:10px;padding:2px 14px;margin-right:12px}
+#title{position:absolute;left:56px;top:108px;font-size:66px;line-height:1.18;font-weight:900;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.12)}
+#tname{position:absolute;right:52px;top:262px;width:260px;text-align:center;font-size:28px;font-weight:700;color:#fff}
+#tname small{display:block;font-size:22px;font-weight:500;opacity:.9}
+#pip{position:absolute;left:792px;top:22px;width:240px;height:240px;border-radius:50%;border:6px solid #fff;overflow:hidden;background:#ddd;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#pip img{width:100%;height:100%;object-fit:cover}
+#onair{position:absolute;right:300px;top:130px;background:var(--gold);color:#5a2a00;font-size:26px;font-weight:900;border-radius:24px;padding:6px 18px;opacity:0;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+#onair::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:#e8392f;margin-right:8px;vertical-align:2px}
+#card{position:absolute;left:40px;top:362px;width:1000px;background:#fff;border-radius:28px;box-shadow:0 10px 30px rgba(200,40,30,.10);padding:34px 40px 36px}
+#qno{display:inline-block;background:var(--red);color:#fff;font-weight:900;font-size:34px;border-radius:14px;padding:4px 20px;margin-bottom:18px}
+#qsrc{display:inline-block;margin-left:14px;font-size:26px;color:var(--muted)}
+#problem{font-size:40px;line-height:1.75;font-weight:500}
+#problem .opts{display:grid;grid-template-columns:1fr 1fr;row-gap:4px;margin-top:6px}
+#panel{position:absolute;left:40px;width:1000px;bottom:330px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 36px);mask-image:linear-gradient(to bottom,transparent 0,#000 36px)}
+#flow{padding-top:20px}
+#flow{position:absolute;left:0;top:0;width:1000px}
+.step{margin:0 0 22px;}
+.badge{display:inline-flex;align-items:center;gap:12px;font-size:34px;font-weight:900;color:var(--red2);margin:10px 0 10px}
+.badge i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;font-size:30px}
+.line{position:relative;font-size:40px;line-height:1.7;padding-left:8px;white-space:nowrap}
+.line.c{text-align:center;padding-left:0}
+.line.note{font-size:34px;color:var(--muted)}
+.box{position:relative;display:inline-block}
+.hl{position:absolute;border:5px solid var(--red);border-radius:14px;pointer-events:none}
+.st{position:absolute;height:5px;border-radius:3px;background:#8a8f9c;pointer-events:none}
+.ul{position:absolute;height:8px;border-radius:4px;background:var(--gold);pointer-events:none}
+.tag{position:absolute;font-size:30px;font-weight:700;color:var(--red);transform:translateX(-50%);white-space:nowrap}
+.caret{position:absolute;width:5px;border-radius:3px;background:var(--red);box-shadow:0 0 12px rgba(232,57,47,.8)}
+.kj{background:#fff;border-radius:24px;border:4px dashed var(--red);padding:22px 30px;font-size:42px;font-weight:900;line-height:1.55;text-align:center;color:var(--red2)}
+.kj b{color:var(--ink)}
+.ans{display:inline-block;font-size:52px;font-weight:900;color:#fff;background:var(--green);border-radius:22px;padding:10px 40px;box-shadow:0 8px 20px rgba(22,163,106,.3)}
+svg text{font-family:"KaTeX_Main","Noto Sans SC",serif}
+#subwrap{position:absolute;left:40px;width:1000px;bottom:176px;height:136px;display:flex;align-items:center;justify-content:center}
+#sub{background:rgba(25,28,40,.86);color:#fff;font-size:38px;line-height:1.45;font-weight:500;border-radius:22px;padding:14px 30px;text-align:center;max-width:1000px}
+#sub .who{display:inline-block;font-size:26px;font-weight:700;border-radius:10px;padding:0 10px;margin-right:12px;vertical-align:3px}
+#foot{position:absolute;left:0;bottom:0;width:1080px;height:150px;background:#2a2d3a;color:#fff;display:flex;align-items:center;justify-content:center;gap:26px;font-size:32px;font-weight:700}
+#foot .k{color:var(--gold)}
+#foot .sep{width:3px;height:66px;background:rgba(255,255,255,.25)}
+#cover{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+</style></head>
+<body>
+<div id="header">
+  <div id="brand"><span>高一数学</span>课后巩固 · 动画精讲</div>
+  <div id="title">妙解绝对值<br>函数最值问题</div>
+  <div id="pip"><img id="pipimg" src=""></div>
+  <div id="onair">课堂原声 ▶</div>
+  <div id="tname">胡源老师<small>北大元培 · 高考状元</small></div>
+</div>
+<div id="card"><div><span id="qno"></span><span id="qsrc"></span></div><div id="problem"></div></div>
+<div id="panel"><div id="flow"></div></div>
+<div id="subwrap"><div id="sub"></div></div>
+<div id="foot"><div><span class="k">奇数个</span>绝对值相加<br>中间一点取最小</div><div class="sep"></div><div><span class="k">偶数个</span>绝对值相加<br>中间两点间最小</div></div>
+<script>
+// ---------- helpers ----------
+function tex(s){ // render $...$ inside a string
+  return s.replace(/\$([^$]+)\$/g,(m,t)=>katex.renderToString(t,{throwOnError:false,trust:true,strict:false}));
+}
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=clamp(x);return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2};
+const back=x=>{x=clamp(x);const c=1.6;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let TL=null, items=[], flow, panel, scrollKeys=[];
+
+function el(html){const d=document.createElement('div');d.innerHTML=html;return d.firstElementChild}
+
+window.setup=function(tl){
+  TL=tl;
+  document.getElementById('qno').textContent=tl.qno;
+  document.getElementById('qsrc').textContent=tl.qsrc||'';
+  document.getElementById('problem').innerHTML=tex(tl.problem);
+  document.getElementById('pipimg').src=tl.pip;
+  flow=document.getElementById('flow'); panel=document.getElementById('panel');
+  const card=document.getElementById('card');
+  panel.style.top=(card.offsetTop+card.offsetHeight+26)+'px';
+  for(const a of tl.actions){
+    const it={a};
+    if(a.do==='badge'){it.node=el(`<div class="badge"><i>${a.n}</i>${a.text}</div>`);flow.appendChild(it.node)}
+    else if(a.do==='line'){it.node=el(`<div class="line ${a.cls||''}"><span class="box">${tex(a.html)}</span></div>`);flow.appendChild(it.node);it.box=it.node.firstElementChild}
+    else if(a.do==='html'){it.node=el(`<div class="line ${a.cls||''}" style="white-space:normal">${tex(a.html)}</div>`);flow.appendChild(it.node)}
+    else if(a.do==='gap'){it.node=el(`<div style="height:${a.h}px"></div>`);flow.appendChild(it.node)}
+    else if(a.do==='nl'){it.node=buildNL(a);flow.appendChild(it.node)}
+    items.push(it);
+  }
+  // overlays (need layout)
+  for(const it of items){const a=it.a;
+    if(a.do==='hl'||a.do==='ul'||a.do==='tag'||a.do==='st'){
+      const host=a.in==='problem'?document.getElementById('card'):flow;
+      it.host=host; it.node=el(`<div class="${a.do}">${a.do==='tag'?tex(a.text):''}</div>`);host.appendChild(it.node);
+    }
+  }
+  if(document.getElementById('caret')==null){const c=el('<div class="caret" id="caret"></div>');flow.appendChild(c)}
+};
+
+// ---------- number line ----------
+function buildNL(a){
+  const W=1000,H=a.h||300,y0=a.y||150,x0=60,x1=940;
+  const X=p=>x0+(x1-x0)*(p-a.min)/(a.max-a.min);
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block">`;
+  s+=`<g class="axis"><line x1="${x0-30}" y1="${y0}" x2="${x1+20}" y2="${y0}" stroke="#3b6fd8" stroke-width="7" stroke-linecap="round"/><path d="M${x1+42},${y0} l-30,-16 v32z" fill="#3b6fd8"/></g>`;
+  (a.pts||[]).forEach((p,i)=>{s+=`<g class="pt" data-i="${i}"><circle cx="${X(p.p)}" cy="${y0}" r="15" fill="${p.c||'#e8392f'}" stroke="#fff" stroke-width="4"/><text x="${X(p.p)}" y="${y0+(p.below===false?-34:62)}" text-anchor="middle" font-size="40" font-style="${p.it?'italic':'normal'}" fill="#1f2330">${p.l}</text>${p.top?`<text x="${X(p.p)}" y="${y0+104}" text-anchor="middle" font-size="28" fill="#e8392f" font-weight="700">${p.top}</text>`:''}</g>`});
+  (a.marks||[]).forEach((m,i)=>{const cx=X(m.p);if(m.x){s+=`<g class="mk" data-i="${i}"><path d="M${cx-30},${y0-30} L${cx+30},${y0+30} M${cx+30},${y0-30} L${cx-30},${y0+30}" stroke="#e8392f" stroke-width="8" stroke-linecap="round"/>${m.l?`<text x="${cx}" y="${y0-50}" text-anchor="middle" font-size="30" font-weight="700" fill="#e8392f" font-family="Noto Sans SC">${m.l}</text>`:''}</g>`;return}s+=`<g class="mk" data-i="${i}"><circle cx="${cx}" cy="${y0}" r="34" fill="none" stroke="${m.c||'#16a36a'}" stroke-width="7"/><path d="M${cx},${y0-120} v66" stroke="${m.c||'#16a36a'}" stroke-width="7" stroke-linecap="round"/><path d="M${cx-16},${y0-70} l16,22 l16,-22" fill="none" stroke="${m.c||'#16a36a'}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><text x="${cx}" y="${y0-134}" text-anchor="middle" font-size="34" font-weight="900" fill="${m.c||'#16a36a'}" font-family="Noto Sans SC">${m.l}</text></g>`});
+  if(a.mover){s+=`<g class="mv"><g class="segs"></g><circle class="mx" cx="0" cy="${y0}" r="14" fill="#ffb100" stroke="#5a2a00" stroke-width="4"/><text class="mxl" x="0" y="${y0+104}" text-anchor="middle" font-size="40" font-style="italic" fill="#b06a00" font-weight="700">x</text></g>`}
+  s+='</svg>';
+  const d=el(`<div class="nl" style="background:#fff;border-radius:24px;margin:6px 0 18px;box-shadow:0 6px 18px rgba(40,60,120,.08)">${s}</div>`);
+  d._X=X; d._y0=y0; return d;
+}
+
+// ---------- per-frame render ----------
+function wipe(node,p){ // typewriter-like left->right reveal, returns caret x
+  node.style.clipPath=`inset(-20px ${(1-p)*100}% -20px -20px)`;
+}
+window.render=function(t){
+  const caret=document.getElementById('caret'); let caretOn=false;
+  for(const it of items){const a=it.a, n=it.node; const p=(t-a.t)/(a.d||0.5);
+    if(a.do==='line'||a.do==='html'){
+      if(p<=0){n.style.opacity=0;continue} n.style.opacity=1;
+      if(a.fx==='pop'){n.style.transform=`scale(${0.6+0.4*back(p)})`;n.style.transformOrigin='left center';n.style.clipPath='none'}
+      else {const q=clamp(p); wipe(it.box||n,q);
+        if(q<1){const b=(it.box||n); caretOn=true; caret.style.left=(n.offsetLeft+b.offsetLeft+b.offsetWidth*q+4)+'px'; caret.style.top=(n.offsetTop+10)+'px'; caret.style.height=(n.offsetHeight-20)+'px'}}
+    } else if(a.do==='badge'){n.style.opacity=clamp(p*2); n.style.transform=`translateX(${(1-ease(p))*-40}px)`}
+    else if(a.do==='gap'){}
+    else if(a.do==='nl'){renderNL(it,t)}
+    else if(a.do==='hl'||a.do==='ul'||a.do==='tag'||a.do==='st'){
+      const tgt=document.querySelector(a.sel); if(!tgt){n.style.opacity=0;continue}
+      const off=t>a.t&&(a.until==null||t<a.until)?1:0;
+      const r=tgt.getBoundingClientRect(), h=it.host.getBoundingClientRect(); const pad=a.pad??8;
+      const L=r.left-h.left, T=r.top-h.top;
+      if(a.do==='hl'){n.style.left=(L-pad)+'px';n.style.top=(T-pad)+'px';n.style.width=(r.width+2*pad)+'px';n.style.height=(r.height+2*pad)+'px';n.style.borderColor=a.c||'';n.style.opacity=off;n.style.transform=`scale(${off?0.8+0.2*back(p*2):1})`}
+      else if(a.do==='ul'){n.style.left=L+'px';n.style.top=(T+r.height-2)+'px';n.style.width=(r.width*clamp(p*2))+'px';n.style.opacity=off}
+      else if(a.do==='st'){n.style.left=(L-6)+'px';n.style.top=(T+r.height/2-2)+'px';n.style.width=((r.width+12)*clamp(p*2))+'px';n.style.opacity=off;if(off)tgt.style.opacity=0.45}
+      else {n.style.left=(L+r.width/2)+'px';n.style.top=(T-(a.dy??46))+'px';n.style.opacity=off?clamp(p*3):0}
+    }
+  }
+  caret.style.opacity=caretOn?1:0;
+  // auto scroll: keep latest visible flow block in view
+  let bottom=0; for(const it of items){const a=it.a; if(['line','html','badge','nl','gap'].includes(a.do)&&t>=a.t){bottom=Math.max(bottom,it.node.offsetTop+it.node.offsetHeight)}}
+  const target=Math.max(0,bottom-panel.offsetHeight+20);
+  if(window._sy==null){window._sy=target;window._st=t;window._sfrom=target;window._sto=target}
+  if(target!==window._sto){window._sfrom=currentScroll(t);window._sto=target;window._st=t}
+  flow.style.transform=`translateY(${-currentScroll(t)}px)`;
+  // subtitles
+  const sub=document.getElementById('sub'); let cur=null;
+  for(const s of TL.subs){if(t>=s.t&&t<s.e){cur=s;break}}
+  if(cur){sub.style.opacity=1; if(sub._k!==cur.k){sub.innerHTML=(cur.who?`<span class="who" style="background:${cur.teacher?'#ffb100;color:#5a2a00':'#e8392f'}">${cur.who}</span>`:'')+tex(cur.text);sub._k=cur.k}} else sub.style.opacity=0;
+  // on-air badge for teacher's original audio
+  let air=false; for(const s of TL.teacher){if(t>=s.t&&t<s.e)air=true}
+  document.getElementById('onair').style.opacity=air?1:0;
+  document.getElementById('pip').style.borderColor=air?'#ffb100':'#fff';
+};
+function currentScroll(t){const p=ease((t-window._st)/0.7);return window._sfrom+(window._sto-window._sfrom)*p}
+function renderNL(it,t){
+  const a=it.a,n=it.node,X=n._X,y0=n._y0; const p=(t-a.t)/0.6;
+  n.style.opacity=clamp(p); if(p<=0)return;
+  n.querySelector('.axis').style.clipPath=`inset(0 ${(1-ease(p))*100}% 0 0)`;
+  n.querySelectorAll('.pt').forEach((g,i)=>{const pt=a.pts[i];const q=(t-pt.t)/0.4;g.style.opacity=clamp(q);g.style.transformOrigin=`${X(pt.p)}px ${y0}px`;g.style.transform=`scale(${q>0?back(q):0})`});
+  n.querySelectorAll('.mk').forEach((g,i)=>{const m=a.marks[i];const q=(t-m.t)/0.5;g.style.opacity=clamp(q);g.style.transformOrigin=`${X(m.p)}px ${y0}px`;g.style.transform=`scale(${q>0?back(q):0})`});
+  if(a.mover){const m=a.mover,g=n.querySelector('.mv');const q=(t-m.t)/m.d;g.style.opacity=q>0?1:0; if(q<=0)return;
+    // piecewise path through keyframes
+    const ks=m.path; const seg=clamp(q)*(ks.length-1); const i=Math.min(Math.floor(seg),ks.length-2); const f=ease(seg-i);
+    const px=ks[i]+(ks[i+1]-ks[i])*f; const cx=X(px);
+    g.querySelector('.mx').setAttribute('cx',cx); g.querySelector('.mxl').setAttribute('x',cx);
+    let segs=''; const cols=['#e8392f','#2f6fe8','#16a36a','#a855f7'];
+    a.pts.forEach((pt,j)=>{if(pt.skipDist)return; const tx=X(pt.p); const lift=24+j*22; const hgt=Math.min(110, 30+Math.abs(tx-cx)*0.25);
+      segs+=`<path d="M${cx},${y0-8} Q${(cx+tx)/2},${y0-hgt-lift} ${tx},${y0-8}" fill="none" stroke="${cols[j%4]}" stroke-width="4" stroke-dasharray="${pt.dash?'10 8':'0'}" opacity=".85"/>`});
+    g.querySelector('.segs').innerHTML=segs;
+  }
+}
+</script>
+</body></html>

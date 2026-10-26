@@ -1,0 +1,48 @@
+# 课后作业动画讲解视频 · 生成流水线
+
+把「课后作业 + 解析 + 直播课」做成竖版（1080×1920）逐题动画讲解视频。
+
+画面为机打排版（KaTeX 公式）逐步打出，配数轴动画、圈画标注、AI 配音和字幕；关键处插入直播课里老师的**课堂原声**，播放时右上角切换为老师的实时画面（人像抠图）。
+
+## 流程
+
+```
+直播视频 ──► scripts/asr.py   语音转写，找老师讲方法的原话和时间点
+          └► scripts/pip.py   截取片段，逐帧人像分割和头部跟踪，输出圆形画中画帧
+脚本 specs/qN.json ──► make.py
+      ├─ 逐句 TTS 配音（sherpa-onnx + Kokoro 中文音色），按句精确对齐字幕
+      ├─ 计算时间轴：动作用「念到哪句话」做锚点，自动对齐配音
+      ├─ render.js：Playwright 逐帧渲染 player.html → anim.mp4
+      └─ ffmpeg：叠加老师画中画、混音、响度归一 → final.mp4
+```
+
+## 每道题的脚本（specs/qN.json）
+
+- `problem`：题干（`$...$` 为公式，`\htmlClass{z1}{...}` 给局部打标记，方便圈画）
+- `segments`：按顺序排列的片段
+  - `tts`：`lines` 为 `[念的文字, 字幕显示]`，`actions` 为画面动作
+  - `teacher`：`src` 为直播视频里的起止秒数，`lines` 为原声字幕，`pip` 为画中画帧目录
+- 动作类型：`badge` 步骤标题，`line` 公式行（打字机效果），`html` 卡片，`nl` 数轴，`nlmark` 数轴标记（中间点或划掉），`nlmove` 动点和距离弧线，`hl` 圈出，`ul` 下划线，`tag` 上方标注，`st` 删除线
+- `at` 和 `to` 填锚点文字，即动作在配音念到这几个字时开始或结束；也可以直接填片段内的秒数
+
+## 运行环境
+
+- Python：`sherpa-onnx soundfile numpy onnxruntime opencv-python-headless`
+- Node：`npm i`（katex、@fontsource/noto-sans-sc），以及 playwright 和 chromium
+- 模型从 GitHub Releases 下载到 `$WORK/models/`：
+  - k2-fsa/sherpa-onnx：`kokoro-multi-lang-v1_1`（TTS）、`sherpa-onnx-paraformer-zh-2024-03-09`、`silero_vad.onnx`（ASR）
+  - danielgatis/rembg：`u2net_human_seg.onnx`（人像分割）
+- 直播视频放在 `$WORK/video/default.mp4`
+
+```bash
+export WORK=/path/to/work
+python3 -I scripts/asr.py $WORK/models $WORK/video/audio16k.wav $WORK/transcript.json
+python3 -I scripts/pip.py $WORK/models/u2net_human_seg.onnx $WORK/video/default.mp4 2085.8 2096.2 $WORK/pip_q1
+python3 -I make.py specs/q1.json out_q1            # 加 --plan 只生成配音和时间轴
+node snap.js out_q1/timeline.json out_q1/snap 12 30 60   # 抽帧预览版式
+```
+
+## 注意
+
+- 配音音色：`voice` 12 为女声，65 为男声；字母 a 会自动改写成「 A 」，避免被吞音。
+- 课堂原声的字幕由语音识别生成，发布前请人工核对一遍。

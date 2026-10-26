@@ -1,0 +1,9 @@
+{
+  "name": "kehou-video-pipeline",
+  "private": true,
+  "description": "课后作业动画讲解视频渲染（player.html + Playwright）",
+  "dependencies": {
+    "@fontsource/noto-sans-sc": "5.1.0",
+    "katex": "0.16.11"
+  }
+}
