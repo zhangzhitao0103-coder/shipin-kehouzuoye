@@ -155,13 +155,14 @@ for a in actions:
     else: merged.append(a)
 
 dur = t + spec.get('tail', 1.2)
+TEMPO = spec.get('tempo', 1.0)   # playback speed: >1 speeds narration, animation and teacher clips alike
 audio.append(np.zeros(int(spec.get('tail', 1.2) * SR), np.float32))
 wav = np.concatenate(audio); wav = np.clip(wav, -1, 1)
 sf.write(f'{out}/audio.wav', wav, SR)
-tl = {'fps': FPS, 'duration': dur, 'qno': spec['qno'], 'qsrc': spec.get('qsrc', ''), 'problem': spec['problem'],
+tl = {'fps': FPS, 'duration': dur, 'tempo': TEMPO, 'qno': spec['qno'], 'qsrc': spec.get('qsrc', ''), 'problem': spec['problem'],
       'pip': 'file://' + os.path.join(S, spec['pip_still']), 'note': spec.get('note', ''), 'actions': merged, 'subs': subs, 'teacher': teacher}
 json.dump(tl, open(f'{out}/timeline.json', 'w'), ensure_ascii=False, indent=1)
-print('duration %.1fs' % dur)
+print('duration %.1fs (%.1fs at %.2gx)' % (dur, dur / TEMPO, TEMPO))
 if '--plan' in sys.argv: sys.exit()
 
 # render animation frames
@@ -170,13 +171,14 @@ subprocess.run(['node', f'{B}/render.js', f'{out}/timeline.json', f'{out}/anim.m
 cmd = ['ffmpeg', '-v', 'error', '-y', '-i', f'{out}/anim.mp4', '-i', f'{out}/audio.wav']
 fc, last = [], '0:v'
 for i, tc in enumerate(teacher):
-    cmd += ['-framerate', str(FPS), '-itsoffset', '%.3f' % tc['t'], '-i', os.path.join(tc['pip'], 'p_%05d.png')]
+    t0, t1 = tc['t'] / TEMPO, tc['e'] / TEMPO
+    cmd += ['-framerate', '%g' % (FPS * TEMPO), '-itsoffset', '%.3f' % t0, '-i', os.path.join(tc['pip'], 'p_%05d.png')]
     fc.append(f'[{i+2}:v]scale=228:228,format=rgba[p{i}]')
-    fc.append(f"[{last}][p{i}]overlay=798:28:eof_action=pass:enable='between(t,{tc['t']:.3f},{tc['e']:.3f})'[v{i}]")
+    fc.append(f"[{last}][p{i}]overlay=798:28:eof_action=pass:enable='between(t,{t0:.3f},{t1:.3f})'[v{i}]")
     last = f'v{i}'
 if fc: cmd += ['-filter_complex', ';'.join(fc), '-map', f'[{last}]']
 else: cmd += ['-map', '0:v']
 cmd += ['-map', '1:a', '-c:v', 'libx264', '-crf', '19', '-preset', 'medium', '-pix_fmt', 'yuv420p',
-        '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-shortest', '-movflags', '+faststart', f'{out}/final.mp4']
+        '-af', ('atempo=%g,' % TEMPO if TEMPO != 1 else '') + 'loudnorm=I=-16:TP=-1.5:LRA=11', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-shortest', '-movflags', '+faststart', f'{out}/final.mp4']
 subprocess.run(cmd, check=True)
 print('done', f'{out}/final.mp4')

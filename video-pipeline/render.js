@@ -5,7 +5,7 @@ const fs = require('fs'), path = require('path');
 (async () => {
   const [tlPath, out] = process.argv.slice(2);
   const tl = JSON.parse(fs.readFileSync(tlPath, 'utf8'));
-  const fps = tl.fps, n = Math.ceil(tl.duration * fps);
+  const fps = tl.fps, tempo = tl.tempo || 1, n = Math.ceil(tl.duration / tempo * fps);
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await page.goto('file://' + path.join(__dirname, 'player.html'));
@@ -15,7 +15,7 @@ const fs = require('fs'), path = require('path');
   const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', out], { stdio: ['pipe', 'inherit', 'inherit'] });
   for (let i = 0; i < n; i++) {
-    await page.evaluate(t => window.render(t), i / fps);
+    await page.evaluate(t => window.render(t), i / fps * tempo);  // sample the timeline faster for tempo > 1
     const buf = await page.screenshot({ type: 'jpeg', quality: 92 });
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     if (i % 250 === 0) console.log(`frame ${i}/${n}`);
