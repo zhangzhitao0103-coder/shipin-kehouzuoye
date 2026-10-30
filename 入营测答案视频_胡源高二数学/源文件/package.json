@@ -1,0 +1,10 @@
+{
+  "name": "ruyingce-answer-video",
+  "private": true,
+  "description": "入营测答案揭晓视频的画面渲染（Playwright 逐帧截图）",
+  "dependencies": {
+    "katex": "0.16.22",
+    "@fontsource/noto-sans-sc": "5.2.6",
+    "@fontsource/zcool-qingke-huangyou": "5.2.6"
+  }
+}

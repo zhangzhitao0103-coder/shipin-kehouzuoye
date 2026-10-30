@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>入营测答案揭晓</title>
+<link rel="stylesheet" href="node_modules/katex/dist/katex.min.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/900.css">
+<link rel="stylesheet" href="node_modules/@fontsource/zcool-qingke-huangyou/400.css">
+<script src="node_modules/katex/dist/katex.min.js"></script>
+<script src="node_modules/katex/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --navy:#0b1d3a; --navy2:#123060; --navy3:#1b3f7a;
+  --orange:#ff8a00; --orange2:#ffb84d; --amber:#ffd27a;
+  --ink:#1b2742; --muted:#6a7896; --pale:#eef2fb; --cream:#fff6e3;
+  --green:#14b86a; --red:#ff5a4e;
+}
+*{box-sizing:border-box;margin:0;padding:0;transition:none!important;animation:none!important}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy)}
+body{font-family:"Noto Sans SC",sans-serif;color:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+  background:
+    radial-gradient(900px 700px at 85% 8%, rgba(255,138,0,.20), transparent 60%),
+    radial-gradient(1000px 900px at 0% 70%, rgba(60,120,255,.22), transparent 60%),
+    linear-gradient(180deg,#0d2347 0%,#0a1a35 55%,#081428 100%);}
+#grid{position:absolute;inset:-80px;opacity:.10;
+  background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
+  background-size:80px 80px}
+.glyph{position:absolute;font-family:"KaTeX_Main","Times New Roman",serif;font-style:italic;color:rgba(255,255,255,.07);font-weight:700}
+
+/* header */
+#header{position:absolute;left:60px;right:60px;top:110px;height:250px}
+#avatar{position:absolute;left:0;top:0;width:120px;height:120px;border-radius:50%;
+  background:linear-gradient(160deg,#e9eef8,#bfc9dc);overflow:hidden;border:4px solid #fff}
+#avatar img{position:absolute;left:-12px;top:-2px;width:144px}
+#ring{position:absolute;left:-10px;top:-10px;width:140px;height:140px;border-radius:50%;border:5px solid var(--orange)}
+#htitle{position:absolute;left:150px;top:6px;font-size:60px;font-weight:900;letter-spacing:2px;white-space:nowrap}
+#htitle .dot{color:var(--orange);margin:0 14px}
+#hsub{position:absolute;left:150px;top:88px;font-size:32px;color:#d6e0f5;white-space:nowrap}
+#hsub b{color:#fff;font-weight:700;border-left:8px solid var(--orange);padding-left:14px;margin-right:10px}
+#hpill{position:absolute;right:0;top:12px;padding:12px 30px;border-radius:40px;font-size:34px;font-weight:900;color:#fff;
+  background:linear-gradient(90deg,#ff9d1c,#ff6a00);box-shadow:0 0 30px rgba(255,138,0,.55)}
+#progress{position:absolute;left:0;right:0;top:170px;height:56px;display:flex;gap:16px}
+.pseg{flex:1;height:56px;border-radius:16px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:rgba(255,255,255,.55);position:relative;overflow:hidden}
+.pseg .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#ff9d1c,#ff6a00)}
+.pseg span{position:relative}
+
+/* scenes */
+.scene{position:absolute;left:60px;top:380px;width:960px;height:1050px;opacity:0}
+.math .katex{font-size:1.02em}
+
+/* intro */
+#intro .pill{position:absolute;left:0;right:0;margin:auto;top:10px;width:300px;text-align:center;padding:12px 0;border-radius:44px;
+  background:rgba(255,138,0,.15);border:3px solid var(--orange);color:var(--orange2);font-size:44px;font-weight:900;letter-spacing:8px}
+#intro .big{position:absolute;left:0;right:0;top:90px;text-align:center;font-family:"ZCOOL QingKe HuangYou";font-size:200px;line-height:1;
+  color:#fff;text-shadow:0 10px 0 #ff7a00,0 18px 40px rgba(0,0,0,.45);letter-spacing:10px}
+#intro .tag{position:absolute;left:0;right:0;top:330px;text-align:center;font-size:40px;color:#cfd9ef;font-weight:500}
+#intro .tag b{color:var(--amber)}
+#intro .list{position:absolute;left:0;right:0;top:410px;display:flex;flex-direction:column;gap:22px}
+.irow{height:118px;border-radius:26px;background:#fff;color:var(--ink);display:flex;align-items:center;padding:0 30px;gap:26px;position:relative}
+.irow .n{width:72px;height:72px;border-radius:50%;background:var(--navy);color:#fff;font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.irow .t{font-size:42px;font-weight:900;flex:1}
+.irow .k{font-size:28px;font-weight:700;color:var(--muted);background:var(--pale);padding:6px 18px;border-radius:14px}
+.irow .q{width:110px;height:72px;border-radius:18px;border:3px dashed #ffb04a;color:#ff8a00;font-size:40px;font-weight:900;display:flex;align-items:center;justify-content:center}
+#timer{position:absolute;left:0;right:0;margin:auto;top:955px;width:520px;height:0}
+
+/* question scenes */
+.qhead{display:flex;align-items:center;gap:22px;height:84px}
+.qnum{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--navy);font-size:48px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(255,138,0,.6)}
+.qtype{font-size:46px;font-weight:900}
+.qtype span{font-size:34px;font-weight:500;color:#c9d5ee;margin-left:12px}
+.qcard{margin-top:22px;background:#fff;color:var(--ink);border-radius:30px;padding:30px 34px 30px;position:relative}
+.qtext{font-size:38px;line-height:1.75;font-weight:500}
+.qtext .katex{font-size:1.05em}
+.blank{display:inline-block;min-width:150px;border-bottom:4px solid #9aa6bf;text-align:center;color:var(--orange);font-weight:900;margin:0 6px;line-height:1.2}
+.blank i{font-style:normal;display:inline-block}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.opt{height:112px;border-radius:20px;border:3px solid #dfe5f1;display:flex;align-items:center;padding-left:22px;font-size:34px;font-weight:700;color:var(--ink);background:#fff;position:relative}
+.opt .katex{font-size:1.0em}
+.opt.ok{border-color:var(--green)}
+.opt .chk{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;background:var(--green);opacity:0;display:flex;align-items:center;justify-content:center}
+.kprow{display:flex;gap:22px;margin-top:24px;height:220px}
+.ansbox{width:250px;border-radius:30px;background:linear-gradient(160deg,#ff9d1c,#ff6a00);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(255,120,0,.35);position:relative}
+.ansbox .lab{font-size:30px;font-weight:700;opacity:.95;letter-spacing:6px}
+.ansbox .val{font-size:96px;font-weight:900;line-height:1.05}
+.ansbox .val .katex{font-size:.9em}
+.ansbox .sub{font-size:26px;font-weight:700;line-height:1}
+.ansbox .sub .katex{font-size:1.1em}
+.kp{flex:1;border-radius:30px;background:rgba(255,255,255,.08);border:3px solid rgba(255,255,255,.18);padding:20px 28px;position:relative;overflow:hidden}
+.kptag{display:inline-block;background:var(--orange);color:#fff;font-size:30px;font-weight:900;padding:6px 18px;border-radius:12px;letter-spacing:4px}
+.kptext{font-size:52px;font-weight:900;margin-top:10px;line-height:1.2;white-space:nowrap}
+.kpsub{font-size:28px;color:#c9d5ee;margin-top:8px}
+.idea{margin-top:24px;height:330px;border-radius:30px;background:#fff;color:var(--ink);display:flex;overflow:hidden;position:relative}
+.idea svg{width:560px;height:330px;flex:none}
+.steps{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:20px 26px 20px 6px}
+.step{background:var(--pale);border-radius:18px;padding:14px 18px;font-size:30px;font-weight:700;line-height:1.3;position:relative}
+.step .katex{font-size:1.0em}
+.step.hot{background:var(--cream);color:#c05a00;border:3px solid #ffc06a}
+.arrow{height:18px;text-align:center;color:#9aa6bf;font-size:22px;line-height:18px;margin:-6px 0}
+.ideahead{position:absolute;left:24px;top:18px;font-size:26px;font-weight:900;color:#fff;background:var(--navy);padding:4px 14px;border-radius:10px;letter-spacing:3px}
+#q4 .idea{flex-direction:column;height:350px}
+#q4 .idea svg{width:960px;height:275px}
+#q4 .kp{padding:14px 26px}
+#q4 .kptext{margin-top:6px}
+#q4 .ansbox .val{font-size:80px}
+#q4 .ansbox .sub{font-size:30px}
+#q4 .steps{flex-direction:row;align-items:center;padding:0 24px 20px;gap:10px;justify-content:center}
+#q4 .step{font-size:28px;padding:12px 16px}
+#q4 .arrow{margin:0;height:auto}
+#q4 .opt{height:96px}
+
+/* svg styling */
+svg text{font-family:"KaTeX_Main","Times New Roman",serif;font-style:italic}
+svg .cn{font-family:"Noto Sans SC";font-style:normal;font-weight:700}
+
+/* tease */
+#tease .title{position:absolute;left:0;right:0;top:0;text-align:center;font-family:"ZCOOL QingKe HuangYou";font-size:120px;text-shadow:0 8px 0 #ff7a00}
+.tcards{position:absolute;left:0;right:0;top:190px;height:250px}
+.tcard{position:absolute;top:0;width:296px;height:250px;border-radius:28px;background:#fff;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.tcard .h{font-size:34px;font-weight:900;color:var(--muted)}
+.tcard .m{font-size:44px;font-weight:900}
+.tcard .m .katex{font-size:1.05em}
+.tcard .c{font-size:28px;font-weight:700;color:#c05a00;background:var(--cream);padding:4px 14px;border-radius:12px}
+.merge{position:absolute;left:0;right:0;top:190px;height:250px;border-radius:30px;background:linear-gradient(160deg,#ff9d1c,#ff6a00);display:flex;align-items:center;padding:0 40px;gap:30px;opacity:0}
+.merge .l{font-size:60px;font-weight:900;line-height:1.15}
+.merge .l small{display:block;font-size:32px;font-weight:700;opacity:.92}
+.lockbox{margin-left:auto;width:400px;height:170px;border-radius:24px;background:rgba(0,0,0,.18);border:3px dashed rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.lockbox .blur{font-size:44px;font-weight:900;filter:blur(9px)}
+.lockbox .hint{font-size:28px;font-weight:700;white-space:nowrap}
+.q4row{position:absolute;left:0;right:0;top:500px;height:420px;border-radius:30px;background:rgba(255,255,255,.07);border:3px solid rgba(255,255,255,.16);padding:30px}
+.q4row .lab{font-size:40px;font-weight:900}
+.q4row .lab span{color:var(--amber)}
+.vs{display:flex;gap:24px;margin-top:26px;height:270px}
+.vsl,.vsr{flex:1;border-radius:24px;padding:24px 26px;position:relative}
+.vsl{background:#fff;color:var(--ink)}
+.vsr{background:linear-gradient(160deg,#ff9d1c,#ff6a00);color:#fff}
+.vs .hd{font-size:34px;font-weight:900}
+.vsl .ln{font-size:30px;font-weight:700;color:var(--muted);margin-top:12px}
+.vsl .x{position:absolute;right:20px;top:20px;font-size:30px;font-weight:900;color:#fff;background:var(--red);padding:2px 14px;border-radius:10px}
+.vsr .big{font-size:64px;font-weight:900;margin-top:18px}
+.vsr .lk{font-size:30px;font-weight:700;margin-top:10px;background:rgba(0,0,0,.15);display:inline-block;padding:6px 16px;border-radius:12px}
+
+/* cta */
+#cta .photo{position:absolute;right:-20px;top:-30px;width:540px;height:700px}
+#cta .halo{position:absolute;right:10px;top:40px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#ffb84d,#ff7a00 60%,rgba(255,122,0,0) 72%)}
+#cta .photo img{position:absolute;left:0;bottom:0;width:540px}
+#cta .photo .fade{position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,rgba(10,26,53,0),#0a1a35)}
+#cta .name{position:absolute;left:0;top:40px;font-size:150px;font-weight:900;letter-spacing:12px;line-height:1}
+#cta .role{position:absolute;left:4px;top:220px;font-size:36px;font-weight:900;background:var(--orange);padding:8px 22px;border-radius:14px}
+#cta .bio{position:absolute;left:4px;top:310px;display:flex;flex-direction:column;gap:18px}
+#cta .bio div{font-size:38px;font-weight:700;display:flex;align-items:center;gap:14px;white-space:nowrap}
+#cta .bio svg{width:40px;height:40px}
+#cta .gain{position:absolute;left:0;right:0;top:690px;border-radius:30px;background:#fff;color:var(--ink);padding:26px 30px}
+#cta .gain .hd{font-size:36px;font-weight:900}
+#cta .chips{display:flex;gap:18px;margin-top:16px}
+#cta .chip{flex:1;height:96px;border-radius:20px;background:var(--cream);border:3px solid #ffc06a;color:#c05a00;font-size:46px;font-weight:900;display:flex;align-items:center;justify-content:center}
+#cta .btn{position:absolute;left:0;right:0;top:930px;height:120px;border-radius:60px;background:linear-gradient(90deg,#ff9d1c,#ff5a00);display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:900;letter-spacing:2px;box-shadow:0 16px 50px rgba(255,110,0,.5)}
+#cta .btn .ar{margin-left:16px;font-size:44px}
+#cta .see{position:absolute;right:-6px;top:520px;font-family:"ZCOOL QingKe HuangYou";font-size:96px;color:#fff;background:var(--red);padding:6px 26px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+
+/* captions */
+#cap{position:absolute;left:40px;right:40px;top:1462px;height:150px;display:flex;align-items:center;justify-content:center;text-align:center}
+#capin{font-size:58px;font-weight:900;line-height:1.25;color:#fff;
+  text-shadow:0 0 2px #061024,0 4px 0 #061024,3px 3px 0 #061024,-3px 3px 0 #061024,3px -3px 0 #061024,-3px -3px 0 #061024,0 8px 24px rgba(0,0,0,.6)}
+#capin em{font-style:normal;color:#ffb020}
+#footer{position:absolute;left:0;right:0;top:1650px;text-align:center;font-size:30px;color:rgba(255,255,255,.55);font-weight:500;letter-spacing:4px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div id="glyphs"></div>
+
+  <div id="header">
+    <div id="ring"></div>
+    <div id="avatar"><img src="assets/teacher.png"></div>
+    <div id="htitle">胡源专属<span class="dot">·</span>课前测试</div>
+    <div id="hsub"><b>最值与定点专项训练</b>高二数学 · 入营测</div>
+    <div id="hpill">答案揭晓</div>
+    <div id="progress">
+      <div class="pseg"><div class="fill"></div><span>第1题</span></div>
+      <div class="pseg"><div class="fill"></div><span>第2题</span></div>
+      <div class="pseg"><div class="fill"></div><span>第3题</span></div>
+      <div class="pseg"><div class="fill"></div><span>第4题</span></div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="scene" id="intro">
+    <div class="pill">入营测</div>
+    <div class="big">答案揭晓</div>
+    <div class="tag"><b>4</b> 道题 · 答案 + 考点 · <b>1</b> 分钟对完</div>
+    <div class="list">
+      <div class="irow"><div class="n">1</div><div class="t">三角形面积最值</div><div class="k">选择题</div><div class="q">?</div></div>
+      <div class="irow"><div class="n">2</div><div class="t">三角形面积最值</div><div class="k">填空题</div><div class="q">?</div></div>
+      <div class="irow"><div class="n">3</div><div class="t">三角形面积最值</div><div class="k">填空题</div><div class="q">?</div></div>
+      <div class="irow"><div class="n">4</div><div class="t">椭圆 · 定点定值</div><div class="k">选择题</div><div class="q">?</div></div>
+    </div>
+    <svg id="timer" viewBox="0 0 520 120" style="height:120px">
+      <rect x="0" y="0" width="520" height="120" rx="60" fill="#fff"/>
+      <circle cx="72" cy="62" r="38" fill="none" stroke="#ff8a00" stroke-width="8"/>
+      <rect x="62" y="10" width="20" height="10" rx="3" fill="#ff8a00"/>
+      <line id="hand" x1="72" y1="62" x2="72" y2="36" stroke="#0b1d3a" stroke-width="7" stroke-linecap="round"/>
+      <text x="300" y="80" text-anchor="middle" class="cn" style="font-size:52px;fill:#0b1d3a;font-weight:900">1分钟对完</text>
+    </svg>
+  </div>
+
+  <!-- Q1 -->
+  <div class="scene" id="q1">
+    <div class="qhead"><div class="qnum">1</div><div class="qtype">选择题<span>三角形面积最值</span></div></div>
+    <div class="qcard">
+      <div class="qtext math">已知 $\triangle ABC$ 满足 $AB=2AC$，$BC=4$，则 $\triangle ABC$ 面积的最大值为（　）</div>
+      <div class="opts">
+        <div class="opt math" data-k="A">A.&nbsp;$\dfrac{16\sqrt3}{3}$<div class="chk"></div></div>
+        <div class="opt math ok" data-k="B">B.&nbsp;$\dfrac{16}{3}$<div class="chk"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M5 13l5 5 11-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="opt math" data-k="C">C.&nbsp;$\dfrac{8\sqrt3}{3}$<div class="chk"></div></div>
+        <div class="opt math" data-k="D">D.&nbsp;$\dfrac{8}{3}$<div class="chk"></div></div>
+      </div>
+    </div>
+    <div class="kprow">
+      <div class="ansbox"><div class="lab">答案</div><div class="val">B</div><div class="sub math">$\dfrac{16}{3}$</div></div>
+      <div class="kp"><div class="kptag">考点</div><div class="kptext">阿波罗尼斯圆</div><div class="kpsub">阿氏圆 · 定比轨迹 + 面积最值</div></div>
+    </div>
+    <div class="idea">
+      <div class="ideahead">怎么做</div>
+      <svg id="d1" viewBox="0 0 560 330"></svg>
+      <div class="steps">
+        <div class="step math">$AB=2AC$<br><span style="font-size:26px;color:#6a7896">两边之比为定值</span></div>
+        <div class="arrow">▼</div>
+        <div class="step">点 <i style="font-family:KaTeX_Main">A</i> 的轨迹是圆</div>
+        <div class="arrow">▼</div>
+        <div class="step hot">高最大 = 半径</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="scene" id="q2">
+    <div class="qhead"><div class="qnum">2</div><div class="qtype">填空题<span>三角形面积最值</span></div></div>
+    <div class="qcard">
+      <div class="qtext math">海伦公式：$S=\sqrt{p(p-a)(p-b)(p-c)}$，其中 $p=\frac12(a+b+c)$。已知在 $\triangle ABC$ 中，$BC=6$，$AB=2AC$，则 $\triangle ABC$ 面积的最大值为<span class="blank"><i>12</i></span>。</div>
+    </div>
+    <div class="kprow">
+      <div class="ansbox"><div class="lab">答案</div><div class="val">12</div></div>
+      <div class="kp"><div class="kptag">考点</div><div class="kptext">海伦公式 + 二次函数</div><div class="kpsub">面积表示成函数 · 求最值</div></div>
+    </div>
+    <div class="idea">
+      <div class="ideahead">怎么做</div>
+      <svg id="d2" viewBox="0 0 560 330"></svg>
+      <div class="steps">
+        <div class="step">海伦公式<br><span style="font-size:26px;color:#6a7896">把面积写出来</span></div>
+        <div class="arrow">▼</div>
+        <div class="step">化成二次函数</div>
+        <div class="arrow">▼</div>
+        <div class="step hot">配方 · 求最大值</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="scene" id="q3">
+    <div class="qhead"><div class="qnum">3</div><div class="qtype">填空题<span>三角形面积最值</span></div></div>
+    <div class="qcard">
+      <div class="qtext math">在 $\triangle ABC$ 中，$\angle BAC$ 的角平分线 $AD$ 交边 $BC$ 于点 $D$，若 $BC=3$，$CD=2DB$，则 $\triangle ABC$ 面积的最大值为<span class="blank"><i>3</i></span>。</div>
+    </div>
+    <div class="kprow">
+      <div class="ansbox"><div class="lab">答案</div><div class="val">3</div></div>
+      <div class="kp"><div class="kptag">考点</div><div class="kptext">角平分线定理</div><div class="kpsub">转化为定比 → 回到阿氏圆模型</div></div>
+    </div>
+    <div class="idea">
+      <div class="ideahead">怎么做</div>
+      <svg id="d3" viewBox="0 0 560 330"></svg>
+      <div class="steps">
+        <div class="step math">角平分线定理<br><span style="font-size:26px;color:#6a7896">$AB:AC=BD:DC$</span></div>
+        <div class="arrow">▼</div>
+        <div class="step math">$AB:AC=1:2$</div>
+        <div class="arrow">▼</div>
+        <div class="step hot">又是阿氏圆模型</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="scene" id="q4">
+    <div class="qhead"><div class="qnum">4</div><div class="qtype">选择题<span>椭圆 · 定点定值</span></div></div>
+    <div class="qcard">
+      <div class="qtext math" style="font-size:35px">已知椭圆 $C:\dfrac{x^2}{4}+\dfrac{y^2}{3}=1$，左右顶点分别为 $A,B$。过点 $Q\left(\frac12,0\right)$ 作斜率不为零的直线与椭圆交于 $M,N$ 两点，$AM$ 与 $BN$ 的交点为 $P$，则 $P$ 点必在直线（　）上。</div>
+      <div class="opts">
+        <div class="opt math" data-k="A">A.&nbsp;$x=2$<div class="chk"></div></div>
+        <div class="opt math" data-k="B">B.&nbsp;$x=4$<div class="chk"></div></div>
+        <div class="opt math" data-k="C">C.&nbsp;$x=6$<div class="chk"></div></div>
+        <div class="opt math ok" data-k="D">D.&nbsp;$x=8$<div class="chk"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M5 13l5 5 11-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      </div>
+    </div>
+    <div class="kprow" style="height:186px">
+      <div class="ansbox"><div class="lab">答案</div><div class="val">D</div><div class="sub math">$x=8$</div></div>
+      <div class="kp"><div class="kptag">考点</div><div class="kptext" style="font-size:48px">椭圆定点定值问题</div><div class="kpsub">直线与椭圆联立 · 韦达定理</div></div>
+    </div>
+    <div class="idea">
+      <div class="ideahead">怎么做</div>
+      <svg id="d4" viewBox="0 25 960 285"></svg>
+      <div class="steps">
+        <div class="step">设直线</div><div class="arrow">▶</div>
+        <div class="step">联立方程</div><div class="arrow">▶</div>
+        <div class="step">韦达定理</div><div class="arrow">▶</div>
+        <div class="step hot">计算量大</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEASE -->
+  <div class="scene" id="tease">
+    <div class="title">发现了吗？</div>
+    <div class="tcards">
+      <div class="tcard" style="left:0"><div class="h">第1题</div><div class="m math">$AB=2AC$</div><div class="c">求面积最大</div></div>
+      <div class="tcard" style="left:332px"><div class="h">第2题</div><div class="m math">$AB=2AC$</div><div class="c">求面积最大</div></div>
+      <div class="tcard" style="left:664px"><div class="h">第3题</div><div class="m math">$AC=2AB$</div><div class="c">求面积最大</div></div>
+    </div>
+    <div class="merge">
+      <div class="l">同一个模型<small>前三题 · 一招通杀</small></div>
+      <div class="lockbox"><div class="blur math">$r=\frac{k\cdot a}{k^2-1}$</div><div class="hint"><svg viewBox="0 0 24 24" style="width:30px;height:30px;vertical-align:-5px;margin-right:6px"><rect x="4" y="10" width="16" height="12" rx="3" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2.6" fill="none"/></svg>秒杀公式 · 体验课揭晓</div></div>
+    </div>
+    <div class="q4row">
+      <div class="lab">第4题 · <span>椭圆定点定值</span></div>
+      <div class="vs">
+        <div class="vsl"><div class="hd">常规做法</div><div class="x">慢</div>
+          <div class="ln">① 设直线方程</div><div class="ln">② 与椭圆联立</div><div class="ln">③ 韦达定理 + 硬算</div></div>
+        <div class="vsr"><div class="hd">胡源老师大招</div><div class="big">口算出答案</div><div class="lk"><svg viewBox="0 0 24 24" style="width:30px;height:30px;vertical-align:-5px;margin-right:6px"><rect x="4" y="10" width="16" height="12" rx="3" fill="currentColor"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2.6" fill="none"/></svg>体验课揭晓</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="scene" id="cta">
+    <div class="halo"></div>
+    <div class="photo"><img src="assets/teacher.png"><div class="fade"></div></div>
+    <div class="name">胡源</div>
+    <div class="role">高二数学 · 主理人</div>
+    <div class="bio">
+      <div><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#ff8a00"/></svg>北京大学元培学院毕业</div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#ff8a00"/></svg>北京市朝阳区高考状元</div>
+    </div>
+    <div class="see">直播间见！</div>
+    <div class="gain">
+      <div class="hd">每个考点，都有更高效的</div>
+      <div class="chips"><div class="chip">方法</div><div class="chip">大招</div><div class="chip">技巧</div></div>
+    </div>
+    <div class="btn">胡源老师 · 高二数学体验课<svg class="ar" viewBox="0 0 24 24" style="width:48px;height:48px;margin-left:14px"><path d="M4 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+
+  <div id="cap"><div id="capin"></div></div>
+  <div id="footer">高二数学 · 胡源老师体验课</div>
+</div>
+
+<script src="timeline.js"></script>
+<script>
+// ---------- helpers ----------
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const E = {
+  out: p => 1 - Math.pow(1 - p, 3),
+  inOut: p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2,
+  back: p => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); },
+};
+const pr = (t, t0, d) => clamp((t - t0) / d);
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+function st(el, { o = 1, x = 0, y = 0, s = 1, r = 0, blur = 0 } = {}) {
+  el.style.opacity = o;
+  el.style.transform = `translate(${x}px,${y}px) scale(${s}) rotate(${r}deg)`;
+  el.style.filter = blur ? `blur(${blur}px)` : '';
+}
+// standard pop-in: returns style for element appearing at t0
+function popIn(t, t0, kind = 'up', d = .35) {
+  const p = pr(t, t0, d);
+  if (kind === 'up') { const e = E.out(p); return { o: e, y: (1 - e) * 50 }; }
+  if (kind === 'left') { const e = E.out(p); return { o: e, x: (1 - e) * -80 }; }
+  if (kind === 'right') { const e = E.out(p); return { o: e, x: (1 - e) * 80 }; }
+  if (kind === 'pop') { return { o: clamp(p * 3), s: p >= 1 ? 1 : lerp(.4, 1, E.back(p)) }; }
+  if (kind === 'stamp') { const e = E.back(p); return { o: clamp(p * 4), s: lerp(2.2, 1, clamp(e, 0, 1.2)), r: lerp(-12, 0, E.out(p)) }; }
+  return { o: p };
+}
+const NS = 'http://www.w3.org/2000/svg';
+function S(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+
+// ---------- static setup ----------
+renderMathInElement(document.body, { delimiters: [{ left: '$', right: '$', display: false }], throwOnError: false });
+
+const G = $('#glyphs');
+const GLY = ['π', '∑', '√', 'x²', '∞', 'Δ', 'θ', 'f(x)', '∫', 'y', 'e', 'λ', 'α', '≥', 'S', 'r'];
+const glyphs = [];
+for (let i = 0; i < 22; i++) {
+  const el = document.createElement('div'); el.className = 'glyph';
+  const sz = 60 + ((i * 37) % 90);
+  el.style.fontSize = sz + 'px'; el.textContent = GLY[i % GLY.length];
+  G.appendChild(el);
+  glyphs.push({ el, x: (i * 263) % 1080, y: (i * 419) % 1920, v: 12 + (i % 5) * 6, ph: i * 1.3 });
+}
+
+// diagram builders: each returns update(localTimeInfo)
+function mkTri(svg, X, Y) {
+  return { X, Y, P: (x, y) => `${X(x).toFixed(1)},${Y(y).toFixed(1)}` };
+}
+
+// Q1: B(-2,0) C(2,0), circle center (10/3,0) r 8/3
+const d1 = (() => {
+  const svg = $('#d1'); const sc = 50, ox = 165, oy = 190;
+  const X = x => ox + x * sc, Y = y => oy - y * sc;
+  const cx = 10 / 3, r = 8 / 3;
+  S('line', { x1: X(-2.6), y1: Y(0), x2: X(6.6), y2: Y(0), stroke: '#c9d2e4', 'stroke-width': 2, 'stroke-dasharray': '6 8' }, svg);
+  const circ = S('circle', { cx: X(cx), cy: Y(0), r: r * sc, fill: 'rgba(255,138,0,.06)', stroke: '#ff8a00', 'stroke-width': 4, 'stroke-dasharray': '0 2000' }, svg);
+  const tri = S('polygon', { points: '', fill: 'rgba(36,99,235,.16)', stroke: '#2463eb', 'stroke-width': 4, 'stroke-linejoin': 'round' }, svg);
+  S('line', { x1: X(-2), y1: Y(0), x2: X(2), y2: Y(0), stroke: '#0b1d3a', 'stroke-width': 6, 'stroke-linecap': 'round' }, svg);
+  const h = S('line', { x1: 0, y1: 0, x2: 0, y2: 0, stroke: '#ff5a00', 'stroke-width': 4, 'stroke-dasharray': '8 7' }, svg);
+  const hl = S('text', { x: 0, y: 0, fill: '#ff5a00', 'font-size': 30, class: 'cn' }, svg); hl.textContent = 'h = r';
+  const A = S('circle', { r: 9, fill: '#2463eb', stroke: '#fff', 'stroke-width': 3 }, svg);
+  const tA = S('text', { 'font-size': 32, fill: '#2463eb' }, svg); tA.textContent = 'A';
+  const tB = S('text', { x: X(-2) - 26, y: Y(0) + 34, 'font-size': 32, fill: '#0b1d3a' }, svg); tB.textContent = 'B';
+  const tC = S('text', { x: X(2) - 8, y: Y(0) + 36, 'font-size': 32, fill: '#0b1d3a' }, svg); tC.textContent = 'C';
+  const C4 = S('text', { x: X(0) - 10, y: Y(0) + 36, 'font-size': 28, fill: '#6a7896' }, svg); C4.textContent = '4';
+  const circLen = 2 * Math.PI * r * sc;
+  return (t, L) => {
+    // L: [l0,l1,l2,l3] line objects with start/end in local time
+    const pDraw = E.inOut(pr(t, L[2].start, .9));
+    circ.setAttribute('stroke-dasharray', `${(circLen * pDraw).toFixed(1)} 2000`);
+    circ.setAttribute('opacity', pDraw > 0 ? 1 : 0);
+    // A angle: wander while drawing, then go to top
+    let ang;
+    const tTop = L[3].start;
+    const wander = u => 90 + 62 * Math.cos(u * 1.9);
+    if (t < L[2].start) ang = wander(0);
+    else if (t < tTop) ang = wander(t - L[2].start);
+    else { const q = E.inOut(pr(t, tTop, .6)); ang = lerp(wander(tTop - L[2].start), 90, q); }
+    const ax = cx + r * Math.cos(ang * Math.PI / 180), ay = r * Math.sin(ang * Math.PI / 180);
+    tri.setAttribute('points', `${X(-2)},${Y(0)} ${X(2)},${Y(0)} ${X(ax)},${Y(ay)}`);
+    A.setAttribute('cx', X(ax)); A.setAttribute('cy', Y(ay));
+    tA.setAttribute('x', X(ax) - 10); tA.setAttribute('y', Y(ay) - 18);
+    const ph = pr(t, tTop + .4, .4);
+    h.setAttribute('x1', X(ax)); h.setAttribute('y1', Y(ay)); h.setAttribute('x2', X(ax)); h.setAttribute('y2', lerp(Y(ay), Y(0), ph));
+    h.setAttribute('opacity', ph > 0 ? 1 : 0);
+    hl.setAttribute('x', X(ax) + 14); hl.setAttribute('y', Y(ay / 2) + 10); hl.setAttribute('opacity', pr(t, tTop + .7, .3));
+  };
+})();
+
+// Q2: parabola f(t) = (t-4)(36-t) on t in [4,36]
+const d2 = (() => {
+  const svg = $('#d2');
+  const X = u => 80 + (u - 4) / 32 * 420, Y = v => 290 - v / 256 * 200;
+  S('line', { x1: 60, y1: 290, x2: 530, y2: 290, stroke: '#9aa6bf', 'stroke-width': 3 }, svg);
+  S('line', { x1: 80, y1: 305, x2: 80, y2: 60, stroke: '#9aa6bf', 'stroke-width': 3 }, svg);
+  S('text', { x: 520, y: 320, 'font-size': 28, fill: '#6a7896' }, svg).textContent = 'x²';
+  S('text', { x: 92, y: 80, 'font-size': 28, fill: '#6a7896' }, svg).textContent = 'S²';
+  let d = ''; for (let i = 0; i <= 64; i++) { const u = 4 + i / 2; d += (i ? 'L' : 'M') + X(u).toFixed(1) + ',' + Y((u - 4) * (36 - u)).toFixed(1); }
+  const curve = S('path', { d, fill: 'none', stroke: '#2463eb', 'stroke-width': 5, 'stroke-linecap': 'round' }, svg);
+  const len = curve.getTotalLength(); curve.setAttribute('stroke-dasharray', `0 ${len + 10}`);
+  const v = S('line', { x1: X(20), y1: Y(256), x2: X(20), y2: 290, stroke: '#ff5a00', 'stroke-width': 3, 'stroke-dasharray': '7 7' }, svg);
+  const dot = S('circle', { cx: X(20), cy: Y(256), r: 11, fill: '#ff8a00', stroke: '#fff', 'stroke-width': 3 }, svg);
+  const lab = S('g', {}, svg);
+  S('rect', { x: X(20) + 18, y: Y(256) - 30, width: 180, height: 54, rx: 14, fill: '#ff8a00' }, lab);
+  const tl = S('text', { x: X(20) + 108, y: Y(256) + 7, 'font-size': 30, fill: '#fff', 'text-anchor': 'middle', class: 'cn' }, lab); tl.textContent = '最大值 → 12';
+  return (t, L) => {
+    const p = E.inOut(pr(t, L[1].start + .2, 1.0));
+    curve.setAttribute('stroke-dasharray', `${(len * p).toFixed(1)} ${len + 10}`);
+    const q = pr(t, L[2].start + .5, .35);
+    v.setAttribute('opacity', q); dot.setAttribute('opacity', q);
+    const s = q >= 1 ? 1 : lerp(.3, 1, E.back(q));
+    dot.setAttribute('r', 11 * s);
+    lab.setAttribute('opacity', pr(t, L[2].start + .8, .3));
+  };
+})();
+
+// Q3: B(0,0) C(3,0) A(-1,2) D(1,0); Apollonius circle center(-1,0) r=2
+const d3 = (() => {
+  const svg = $('#d3'); const sc = 62, ox = 250, oy = 205;
+  const X = x => ox + x * sc, Y = y => oy - y * sc;
+  const circ = S('circle', { cx: X(-1), cy: Y(0), r: 2 * sc, fill: 'rgba(255,138,0,.06)', stroke: '#ff8a00', 'stroke-width': 4, 'stroke-dasharray': '0 2000' }, svg);
+  S('polygon', { points: `${X(0)},${Y(0)} ${X(3)},${Y(0)} ${X(-1)},${Y(2)}`, fill: 'rgba(36,99,235,.12)', stroke: '#2463eb', 'stroke-width': 4, 'stroke-linejoin': 'round' }, svg);
+  const bis = S('line', { x1: X(-1), y1: Y(2), x2: X(-1), y2: Y(2), stroke: '#ff5a00', 'stroke-width': 5, 'stroke-linecap': 'round' }, svg);
+  S('circle', { cx: X(1), cy: Y(0), r: 7, fill: '#ff5a00' }, svg);
+  const lbl = (s, x, y, c = '#0b1d3a', fs = 32) => { const e = S('text', { x, y, 'font-size': fs, fill: c }, svg); e.textContent = s; return e; };
+  lbl('A', X(-1) - 14, Y(2) - 16, '#2463eb'); lbl('B', X(0) - 12, Y(0) + 38); lbl('C', X(3) + 6, Y(0) + 34); lbl('D', X(1) - 10, Y(0) + 38, '#ff5a00');
+  const r1 = lbl('1', X(.5) - 8, Y(0) - 12, '#ff5a00', 34), r2 = lbl('2', X(2) - 8, Y(0) - 12, '#ff5a00', 34);
+  const len = 2 * Math.PI * 2 * sc;
+  return (t, L) => {
+    const pb = E.out(pr(t, L[1].start + .1, .6));
+    bis.setAttribute('x2', lerp(X(-1), X(1), pb)); bis.setAttribute('y2', lerp(Y(2), Y(0), pb));
+    const pl = pr(t, L[2].start, .35); r1.setAttribute('opacity', pl); r2.setAttribute('opacity', pl);
+    const pc = E.inOut(pr(t, L[3].start, .9));
+    circ.setAttribute('stroke-dasharray', `${(len * pc).toFixed(1)} 2000`); circ.setAttribute('opacity', pc > 0 ? 1 : 0);
+  };
+})();
+
+// Q4: ellipse x^2/4+y^2/3=1, Q(1/2,0), P on x=8
+const d4 = (() => {
+  const svg = $('#d4'); const sc = 70, ox = 205, oy = 200;
+  const X = x => ox + x * sc, Y = y => oy - y * sc;
+  S('line', { x1: X(-2.7), y1: Y(0), x2: X(10.4), y2: Y(0), stroke: '#c9d2e4', 'stroke-width': 2 }, svg);
+  S('ellipse', { cx: X(0), cy: Y(0), rx: 2 * sc, ry: Math.sqrt(3) * sc, fill: 'rgba(36,99,235,.07)', stroke: '#2463eb', 'stroke-width': 4 }, svg);
+  const x8 = S('line', { x1: X(8), y1: Y(-1.6), x2: X(8), y2: Y(2.75), stroke: '#ff8a00', 'stroke-width': 5, 'stroke-dasharray': '12 9' }, svg);
+  const x8t = S('text', { x: X(8) + 14, y: Y(-1.25), 'font-size': 34, fill: '#ff6a00' }, svg); x8t.textContent = 'x = 8';
+  const ch = S('line', { stroke: '#6a7896', 'stroke-width': 3 }, svg);
+  const am = S('line', { stroke: '#14b86a', 'stroke-width': 3.5 }, svg);
+  const bn = S('line', { stroke: '#a24bf0', 'stroke-width': 3.5 }, svg);
+  const pts = {};
+  for (const [k, c] of [['A', '#0b1d3a'], ['B', '#0b1d3a'], ['Q', '#6a7896'], ['M', '#14b86a'], ['N', '#a24bf0'], ['P', '#ff5a00']]) {
+    pts[k] = { c: S('circle', { r: k === 'P' ? 10 : 7, fill: c, stroke: '#fff', 'stroke-width': 2.5 }, svg), t: S('text', { 'font-size': 30, fill: c }, svg) };
+    pts[k].t.textContent = k;
+  }
+  const put = (k, x, y, dx = 10, dy = -12) => { pts[k].c.setAttribute('cx', X(x)); pts[k].c.setAttribute('cy', Y(y)); pts[k].t.setAttribute('x', X(x) + dx); pts[k].t.setAttribute('y', Y(y) + dy); };
+  const geo = m => {
+    const a = m * m / 4 + 1 / 3, b = m / 4, c = 1 / 16 - 1, D = Math.sqrt(b * b - 4 * a * c);
+    const y1 = (-b + D) / (2 * a), y2 = (-b - D) / (2 * a);
+    const M = [m * y1 + .5, y1], N = [m * y2 + .5, y2];
+    const k1 = M[1] / (M[0] + 2), k2 = N[1] / (N[0] - 2);
+    const xp = -2 * (k1 + k2) / (k1 - k2);
+    return { M, N, P: [xp, k1 * (xp + 2)] };
+  };
+  return (t, L) => {
+    const m = 1.9 + 0.9 * Math.sin((t - L[0].start) * 0.9);
+    const g = geo(m);
+    put('A', -2, 0, -34, 36); put('B', 2, 0, 6, 36); put('Q', .5, 0, -8, 34);
+    put('M', g.M[0], g.M[1], 10, -12); put('N', g.N[0], g.N[1], -30, 30); put('P', g.P[0], g.P[1], 14, -10);
+    const yT = 2.6, yB = -1.6;
+    ch.setAttribute('x1', X(m * yT + .5)); ch.setAttribute('y1', Y(yT)); ch.setAttribute('x2', X(m * -1.75 + .5)); ch.setAttribute('y2', Y(-1.75));
+    am.setAttribute('x1', X(-2)); am.setAttribute('y1', Y(0)); am.setAttribute('x2', X(g.P[0])); am.setAttribute('y2', Y(g.P[1]));
+    bn.setAttribute('x1', X(g.N[0])); bn.setAttribute('y1', Y(g.N[1])); bn.setAttribute('x2', X(g.P[0])); bn.setAttribute('y2', Y(g.P[1]));
+    const p8 = pr(t, L[0].start + .9, .5);
+    x8.setAttribute('opacity', p8); x8t.setAttribute('opacity', p8);
+  };
+})();
+
+// ---------- timeline ----------
+const SC = {}; TL.scenes.forEach(s => SC[s.id] = s);
+const sceneEls = {}; TL.scenes.forEach(s => sceneEls[s.id] = document.getElementById(s.id));
+
+function sceneVis(t, s) {
+  // enter: slide from right; exit: slide to left
+  const pin = E.out(pr(t, s.vs, .45));
+  const pout = E.inOut(pr(t, s.ve - .05, .35));
+  if (t < s.vs || t > s.ve + .4) return { o: 0 };
+  return { o: pin * (1 - pout), x: (1 - pin) * 120 - pout * 120 };
+}
+
+function local(s) { return s.lines; }
+
+function updIntro(t, s) {
+  const el = sceneEls.intro, L = s.lines;
+  st($('.pill', el), popIn(t, s.vs + .05, 'pop'));
+  st($('.big', el), popIn(t, s.vs + .2, 'stamp', .45));
+  st($('.tag', el), popIn(t, s.vs + .45, 'up'));
+  $$('.irow', el).forEach((r, i) => {
+    st(r, popIn(t, L[1].start + i * .16, 'right'));
+    const q = $('.q', r); const pq = pr(t, L[1].start + .7 + i * .1, .3);
+    st(q, { o: 1, s: 1 + .15 * Math.sin(pq * Math.PI) });
+  });
+  st($('#timer'), popIn(t, L[2].start + .1, 'pop', .4));
+  const hp = pr(t, L[2].start + .1, Math.max(.5, L[2].end - L[2].start));
+  const a = hp * 2 * Math.PI;
+  $('#hand').setAttribute('x2', 72 + 26 * Math.sin(a)); $('#hand').setAttribute('y2', 62 - 26 * Math.cos(a));
+}
+
+function updQ(t, s, upd) {
+  const el = sceneEls[s.id], L = s.lines;
+  st($('.qhead', el), popIn(t, s.vs + .05, 'left'));
+  st($('.qcard', el), popIn(t, s.vs + .12, 'up'));
+  const tAns = L[0].start + (L[0].end - L[0].start) * .45;
+  // options
+  $$('.opt', el).forEach(o => {
+    const ok = o.classList.contains('ok'); const p = pr(t, tAns, .3);
+    if (ok) {
+      o.style.background = p > 0 ? `rgba(20,184,106,${.12 * p})` : '#fff';
+      st(o, { o: 1, s: 1 + .06 * Math.sin(clamp(p * 1.0) * Math.PI) });
+      const c = $('.chk', o); st(c, popIn(t, tAns, 'pop', .3));
+    } else st(o, { o: lerp(1, .35, p) });
+  });
+  const b = $('.blank i', el); if (b) st(b, popIn(t, tAns, 'stamp', .4));
+  st($('.ansbox', el), popIn(t, tAns, 'stamp', .45));
+  st($('.kp', el), popIn(t, L[1].start, 'right'));
+  st($('.idea', el), popIn(t, L[1].start + .25, 'up'));
+  const steps = $$('.step', el), arrows = $$('.arrow', el);
+  const n = steps.length;
+  const tS = s.id === 'q4' ? [L[2].start, L[2].start + .5, L[2].start + 1.1, L[3].start] : [L[1].start + .5, L[2].start, L[L.length - 1].start];
+  steps.forEach((x, i) => { const t0 = tS[Math.min(i, tS.length - 1)]; st(x, popIn(t, t0, s.id === 'q4' ? 'pop' : 'right', .3)); });
+  arrows.forEach((x, i) => st(x, { o: pr(t, tS[Math.min(i + 1, tS.length - 1)], .2) }));
+  upd(t, L);
+}
+
+function updTease(t, s) {
+  const el = sceneEls.tease, L = s.lines;
+  st($('.title', el), popIn(t, s.vs + .05, 'stamp', .4));
+  const cards = $$('.tcard', el);
+  const tm = L[0].start + (L[0].end - L[0].start) * .55;
+  const pm = E.inOut(pr(t, tm, .45));
+  cards.forEach((c, i) => {
+    const a = popIn(t, s.vs + .3 + i * .15, 'up');
+    const dx = (332 - i * 332) * pm;
+    st(c, { o: a.o * (1 - pr(t, tm + .3, .2)), y: a.y, x: dx, s: lerp(1, .8, pm) });
+  });
+  st($('.merge', el), popIn(t, tm + .3, 'pop', .4));
+  st($('.q4row', el), popIn(t, L[1].start, 'up'));
+  st($('.vsl', el), popIn(t, L[1].start + .2, 'left'));
+  st($('.vsr', el), popIn(t, L[1].start + .7, 'stamp', .45));
+}
+
+function updCta(t, s) {
+  const el = sceneEls.cta, L = s.lines;
+  st($('.halo', el), popIn(t, s.vs + .0, 'pop', .5));
+  st($('.photo', el), popIn(t, s.vs + .1, 'up', .5));
+  st($('.gain', el), popIn(t, s.vs + .3, 'up'));
+  $$('.chip', el).forEach((c, i) => st(c, popIn(t, L[0].start + (L[0].end - L[0].start) * (.45 + i * .15), 'pop', .3)));
+  st($('.name', el), popIn(t, L[1].start, 'left'));
+  st($('.role', el), popIn(t, L[1].start + .2, 'left'));
+  $$('.bio div', el).forEach((b, i) => st(b, popIn(t, L[1].start + .4 + i * .15, 'left')));
+  const pb = popIn(t, L[1].start + .5, 'up');
+  const pulse = t > L[1].start + 1 ? 1 + .03 * Math.sin((t - L[1].start) * 7) : 1;
+  st($('.btn', el), { ...pb, s: pulse });
+  st($('.see', el), popIn(t, L[2].start, 'stamp', .45));
+}
+
+function updHeader(t) {
+  st($('#header'), popIn(t, 0, 'up', .4));
+  // avatar ring reacts to voice level
+  const fi = Math.min(TL.env.length - 1, Math.max(0, Math.round(t * TL.fps)));
+  const lv = TL.env[fi] || 0;
+  st($('#ring'), { o: .35 + .65 * lv, s: 1 + .08 * lv });
+  const ids = ['q1', 'q2', 'q3', 'q4'];
+  $$('.pseg').forEach((p, i) => {
+    const s = SC[ids[i]]; const f = $('.fill', p);
+    const pf = E.out(pr(t, s.vs, .4));
+    f.style.width = (pf * 100) + '%';
+    p.style.color = pf > .5 ? '#fff' : 'rgba(255,255,255,.55)';
+  });
+  st($('#hpill'), { o: 1, s: 1 + .04 * Math.sin(t * 5) });
+}
+
+function updCaption(t) {
+  let cur = null;
+  for (const s of TL.scenes) for (const l of s.lines) if (t >= l.start - .05 && t < l.end + .35) cur = l;
+  const el = $('#capin');
+  if (!cur) { el.style.opacity = 0; return; }
+  if (el.dataset.k !== cur.cap) {
+    el.innerHTML = cur.cap.replace(/\{([^}]*)\}/g, '<em>$1</em>'); el.dataset.k = cur.cap;
+    const n = cur.cap.replace(/[{}]/g, '').length;
+    el.style.fontSize = Math.min(58, Math.floor(990 / n)) + 'px';
+  }
+  const p = pr(t, cur.start - .05, .18);
+  st(el, { o: p, s: lerp(.9, 1, E.back(p)) });
+}
+
+window.seek = function (t) {
+  glyphs.forEach(g => { let y = (g.y - t * g.v) % 2000; if (y < -100) y += 2000; g.el.style.transform = `translate(${g.x + 18 * Math.sin(t * .5 + g.ph)}px,${y}px)`; });
+  $('#grid').style.transform = `translateY(${(t * 20) % 80}px)`;
+  updHeader(t);
+  for (const s of TL.scenes) {
+    const el = sceneEls[s.id]; const v = sceneVis(t, s);
+    if (v.o <= 0.001) { el.style.opacity = 0; continue; }
+    st(el, v);
+    if (s.id === 'intro') updIntro(t, s);
+    else if (s.id === 'q1') updQ(t, s, d1);
+    else if (s.id === 'q2') updQ(t, s, d2);
+    else if (s.id === 'q3') updQ(t, s, d3);
+    else if (s.id === 'q4') updQ(t, s, d4);
+    else if (s.id === 'tease') updTease(t, s);
+    else if (s.id === 'cta') updCta(t, s);
+  }
+  updCaption(t);
+  $('#footer').style.opacity = clamp(t / .5) * .9;
+};
+window.ready = (async () => { await document.fonts.ready; window.seek(0); await document.fonts.ready; return true; })();
+</script>
+</body>
+</html>

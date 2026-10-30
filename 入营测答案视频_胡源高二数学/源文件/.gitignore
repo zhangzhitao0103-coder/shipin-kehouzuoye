@@ -1,0 +1,8 @@
+node_modules/
+models/
+voice/
+frames/
+out/
+prev/
+timeline.js
+__pycache__/
