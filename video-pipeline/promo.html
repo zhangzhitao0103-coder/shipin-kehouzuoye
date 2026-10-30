@@ -80,7 +80,7 @@ html,body{width:1080px;height:2400px;overflow:hidden;font-family:"Noto Sans SC",
 #foot{position:absolute;left:0;bottom:0;width:1080px;height:220px;background:#24262f;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
 #foot .t{font-size:40px;font-weight:900}
 #foot .t span{color:var(--gold)}
-#foot .n{font-size:24px;opacity:.7}
+#foot .n{font-size:28px;opacity:.85}
 </style></head>
 <body>
 <div id="head">
@@ -151,6 +151,8 @@ window.render=function(t){
     const f=t<s.t?0:clamp((t-s.t)/0.5); seg.querySelector('i').style.transform=`scaleX(${ease(f)})`; seg.style.color=f>0.5?'#fff':'#b9bcc6'}
   // CTA button pulse
   const btn=document.querySelector('.outro .btn'); if(btn){const o=scenes.find(x=>x.s.type==='outro').s; const k=t-o.t; btn.style.transform=`scale(${k>0?1+0.04*Math.sin(k*6):1})`}
+  // disclosure note: whole video, or only from note_from on (e.g. the last seconds)
+  const nt=document.getElementById('note'); nt.style.opacity=t>=(TL.note_from||0)?1:0;
   // subtitles
   const sub=document.getElementById('sub'); let cur=null;
   for(const s of TL.subs){if(t>=s.t&&t<s.e){cur=s;break}}

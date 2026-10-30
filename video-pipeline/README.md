@@ -32,6 +32,7 @@
 - 场景字段：`intro`（`cards`）、`q`（`problem`/`options`/`answer`/`points`/`teaser`/`stars`/`qsize`）、`outro`（`headline`/`items`）；`actions` 用 `sel` + `fx`（`pop`/`up`/`slide`/`stamp`/`right`）+ `at` 锚点
 - 背景音乐：`music.py` 用代码合成（120 BPM，C–G–Am–F），不涉及版权；老师说话时自动压低（sidechain），整体两遍线性响度归一到约 -15 LUFS，音乐不会在停顿处忽大忽小
 - 老师头像：`scripts/cutout.py` 从直播笔记第 3 页官方照抠图，成品在 `assets/`（使用时复制到 `$WORK/promo/`）
+- `note` + `note_last`：AI 合成提示语只在片尾最后 N 秒显示（入营测视频为最后 2 秒）；不填 `note_last` 则全程显示
 - `voice.py`：两个模板共用的配音模块（Kokoro / 老师声音克隆 + 语音识别质检）
 
 ## 老师声音克隆配音（specs 中的 `clone` 字段）

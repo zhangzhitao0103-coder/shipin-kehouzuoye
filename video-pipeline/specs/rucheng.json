@@ -15,7 +15,7 @@
   "model": "full",
   "steps": 16
  },
- "who": "胡源老师 · AI配音",
+ "who": "胡源老师",
  "note": "※ 配音为 AI 合成（经胡源老师授权使用其音色）",
  "avatar": "promo/avatar.png",
  "portrait": "promo/teacher_cutout.png",
@@ -356,5 +356,6 @@
     }
    ]
   }
- ]
+ ],
+ "note_last": 2.0
 }

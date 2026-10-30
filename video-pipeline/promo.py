@@ -40,7 +40,7 @@ audio.append(np.zeros(int(spec.get('tail', 1.0) * SR), np.float32))
 sf.write(f'{out}/voice.wav', np.clip(np.concatenate(audio), -1, 1), SR)
 tl = {'fps': FPS, 'duration': dur, 'tempo': TEMPO, 'size': spec.get('size', [1080, 2400]), 'page': 'promo.html',
       'avatar': 'file://' + os.path.join(S, spec['avatar']), 'portrait': 'file://' + os.path.join(S, spec['portrait']),
-      'note': spec.get('note', ''), 'scenes': scenes, 'actions': actions, 'subs': subs}
+      'note': spec.get('note', ''), 'note_from': dur - spec['note_last'] * TEMPO if spec.get('note_last') else 0, 'scenes': scenes, 'actions': actions, 'subs': subs}
 json.dump(tl, open(f'{out}/timeline.json', 'w'), ensure_ascii=False, indent=1)
 print('duration %.1fs (%.1fs at %.2gx)' % (dur, dur / TEMPO, TEMPO))
 if '--plan' in sys.argv: sys.exit()
