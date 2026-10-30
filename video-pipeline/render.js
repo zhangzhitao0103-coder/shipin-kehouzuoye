@@ -1,4 +1,4 @@
-// usage: node render.js timeline.json out.mp4
+// usage: node render.js timeline.json out.mp4   (timeline may set `page` and `size`; defaults: player.html, 1080x1920)
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const fs = require('fs'), path = require('path');
@@ -7,8 +7,9 @@ const fs = require('fs'), path = require('path');
   const tl = JSON.parse(fs.readFileSync(tlPath, 'utf8'));
   const fps = tl.fps, tempo = tl.tempo || 1, n = Math.ceil(tl.duration / tempo * fps);
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
-  await page.goto('file://' + path.join(__dirname, 'player.html'));
+  const [w, h] = tl.size || [1080, 1920];
+  const page = await browser.newPage({ viewport: { width: w, height: h } });
+  await page.goto('file://' + path.join(__dirname, tl.page || 'player.html'));
   await page.evaluate(t => window.setup(t), tl);
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(500);

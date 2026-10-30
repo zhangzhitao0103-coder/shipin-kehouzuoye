@@ -26,6 +26,14 @@
 - `at` 和 `to` 填锚点文字，即动作在配音念到这几个字时开始或结束；也可以直接填片段内的秒数
 - `tempo`：整体播放倍速（如 `1.5`）。配音和课堂原声做保调变速，动画按同样倍速逐帧重新采样，老师画中画同步加速，不会掉帧或错位
 
+## 短视频模板：promo.py（如入营测答案速览）
+
+- `specs/rucheng.json` → `promo.html`（1080×2400 安卓竖屏）：开场 → 逐题卡片（答案盖章、正确选项变绿、知识点逐个弹出、「体验课揭晓」引导条）→ 结尾引流页
+- 场景字段：`intro`（`cards`）、`q`（`problem`/`options`/`answer`/`points`/`teaser`/`stars`/`qsize`）、`outro`（`headline`/`items`）；`actions` 用 `sel` + `fx`（`pop`/`up`/`slide`/`stamp`/`right`）+ `at` 锚点
+- 背景音乐：`music.py` 用代码合成（120 BPM，C–G–Am–F），不涉及版权；老师说话时自动压低（sidechain），整体两遍线性响度归一到约 -15 LUFS，音乐不会在停顿处忽大忽小
+- 老师头像：`scripts/cutout.py` 从直播笔记第 3 页官方照抠图，成品在 `assets/`（使用时复制到 `$WORK/promo/`）
+- `voice.py`：两个模板共用的配音模块（Kokoro / 老师声音克隆 + 语音识别质检）
+
 ## 老师声音克隆配音（specs 中的 `clone` 字段）
 
 - 模型：ZipVoice 零样本声音克隆（sherpa-onnx，`sherpa-onnx-zipvoice-zh-en-emilia`，full 模型，16 步）
@@ -49,6 +57,7 @@ export WORK=/path/to/work
 python3 -I scripts/asr.py $WORK/models $WORK/video/audio16k.wav $WORK/transcript.json
 python3 -I scripts/pip.py $WORK/models/u2net_human_seg.onnx $WORK/video/default.mp4 2085.8 2096.2 $WORK/pip_q1
 python3 -I make.py specs/q1.json out_q1            # 加 --plan 只生成配音和时间轴
+python3 -I promo.py specs/rucheng.json out_rc       # 入营测答案速览短视频
 node snap.js out_q1/timeline.json out_q1/snap 12 30 60   # 抽帧预览版式
 ```
 
