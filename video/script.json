@@ -1,0 +1,24 @@
+{
+  "title": "胡源专属·课前测试 答案速览",
+  "size": [1080, 1920],
+  "fps": 30,
+  "voice": {"speaker_id": 50, "speed": 1.18},
+  "lines": [
+    {"id": "L01", "scene": "intro", "sub": "同学们好，我是胡源！课前测试的答案来啦！"},
+    {"id": "L02", "scene": "intro", "sub": "三道题，看看你能对几道？"},
+    {"id": "L03", "scene": "q1", "sub": "第一题，选A！", "cues": [{"name": "q1_ans", "at": 0.6, "sfx": "ding"}]},
+    {"id": "L04", "scene": "q1", "sub": "x在1到2之间，y取到最小值。", "say": "x在一到二之间，y取到最小值。", "cues": [{"name": "q1_line", "at": 0.04, "sfx": "pop"}]},
+    {"id": "L05", "scene": "q1", "sub": "考点是绝对值的几何意义：看成数轴上的距离之和；", "cues": [{"name": "q1_kp", "at": 0, "sfx": "pop"}]},
+    {"id": "L06", "scene": "q1", "sub": "系数2，就当成两个绝对值。", "say": "系数二，就当成两个绝对值。", "cues": [{"name": "q1_tip", "at": 0, "sfx": "pop"}]},
+    {"id": "L07", "scene": "q2", "sub": "第二题，x等于2！", "say": "第二题，x 等于 二！", "cues": [{"name": "q2_ans", "at": 0.67, "sfx": "ding"}]},
+    {"id": "L08", "scene": "q2", "sub": "同样是带系数的绝对值求最值，和第一题一个思路。", "cues": [{"name": "q2_kp", "at": 0, "sfx": "pop"}, {"name": "q2_line", "at": 0.17}]},
+    {"id": "L09", "scene": "q3", "sub": "第三题，选B，三分之十六！", "cues": [{"name": "q3_ans", "at": 0.3, "sfx": "ding"}, {"name": "q3_frac", "at": 0.53}]},
+    {"id": "L10", "scene": "q3", "sub": "考点是阿波罗尼斯圆：到两定点的距离之比是定值，轨迹就是一个圆；", "speed": 1.1, "cues": [{"name": "q3_kp", "at": 0, "sfx": "pop"}, {"name": "q3_circle", "at": 0.18}]},
+    {"id": "L11", "scene": "q3", "sub": "底边固定，圆的半径就是最大的高。", "cues": [{"name": "q3_h", "at": 0.1, "sfx": "pop"}]},
+    {"id": "L12", "scene": "trick", "sub": "常规做法要分段讨论、建系列方程，一道题少说三五分钟。", "cues": [{"name": "tr_old", "at": 0.02}]},
+    {"id": "L13", "scene": "trick", "sub": "其实，每一类题都有更高效的大招：", "cues": [{"name": "tr_strike", "at": 0, "sfx": "strike"}, {"name": "tr_new", "at": 0.25, "sfx": "rise"}]},
+    {"id": "L14", "scene": "trick", "sub": "绝对值最值，一句口诀秒出答案；阿氏圆，半径直接口算！", "cues": [{"name": "tr_lock1", "at": 0.02, "sfx": "pop"}, {"name": "tr_lock2", "at": 0.52, "sfx": "pop"}]},
+    {"id": "L15", "scene": "cta", "sub": "想知道怎么做？欢迎来到胡源老师的高二数学体验课，", "cues": [{"name": "cta_in", "at": 0, "sfx": "chime"}]},
+    {"id": "L16", "scene": "cta", "sub": "带你掌握高考命题思维的口算方法，我们直播间见！", "cues": [{"name": "cta_btn", "at": 0.66, "sfx": "ding"}]}
+  ]
+}

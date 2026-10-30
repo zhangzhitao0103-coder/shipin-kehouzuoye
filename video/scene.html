@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>胡源课前测答案速览</title>
+<link rel="stylesheet" href="node_modules/katex/dist/katex.min.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/chinese-simplified-400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/chinese-simplified-500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/chinese-simplified-700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/chinese-simplified-900.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/latin-400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/latin-700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/latin-900.css">
+<script src="node_modules/katex/dist/katex.min.js"></script>
+<style>
+:root {
+  --navy-950: #071428;
+  --navy-900: #0b1d36;
+  --navy-800: #10294a;
+  --navy-700: #183b68;
+  --orange: #ff9a1f;
+  --orange-2: #ff6a00;
+  --gold: #ffd34d;
+  --lav: #eef1fb;
+  --ink: #13213a;
+  --muted: #5d6b82;
+  --green: #12a663;
+  --green-bg: #e3f7ec;
+  --red: #e5484d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body {
+  position: relative;
+  font-family: "Noto Sans SC", "WenQuanYi Zen Hei", sans-serif;
+  color: #fff;
+  background:
+    radial-gradient(1200px 900px at 85% -5%, #1d4a85 0%, transparent 60%),
+    radial-gradient(900px 900px at -10% 105%, #1a3f73 0%, transparent 60%),
+    linear-gradient(180deg, var(--navy-900), var(--navy-950));
+}
+.abs { position: absolute; }
+.grid {
+  position: absolute; inset: 0; opacity: .07;
+  background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.glyph { position: absolute; font-family: "KaTeX_Main", serif; font-style: italic; color: #8fb4ea; opacity: .10; white-space: nowrap; }
+.katex { font-size: 1.06em; }
+svg * { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- header ---------- */
+#logo { left: 56px; top: 60px; background: #fff; border-radius: 18px; padding: 12px 20px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+#logo img { height: 44px; display: block; }
+#hot { right: 56px; top: 66px; padding: 14px 28px; border-radius: 40px; font-size: 32px; font-weight: 900;
+  background: linear-gradient(90deg, var(--orange), var(--orange-2)); box-shadow: 0 8px 26px rgba(255,122,0,.45); }
+#htitle { left: 60px; top: 158px; width: 960px; }
+#htitle h1 { font-size: 60px; font-weight: 900; letter-spacing: 2px; }
+#htitle h1 i { font-style: normal; color: var(--orange); margin: 0 10px; }
+#htitle p { margin-top: 10px; font-size: 32px; color: #c6d4ea; font-weight: 500; display: flex; align-items: center; gap: 14px; }
+#htitle p b { color: #fff; font-weight: 900; }
+#htitle p::before { content: ""; width: 9px; height: 34px; border-radius: 5px; background: var(--orange); }
+#progress { left: 60px; top: 318px; display: flex; gap: 18px; }
+.pg { width: 200px; height: 58px; border-radius: 29px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 28px; font-weight: 700; color: #9fb2cf; background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.12); position: relative; overflow: hidden; }
+.pg .on { position: absolute; inset: 0; background: linear-gradient(90deg, var(--orange), var(--orange-2)); }
+.pg span { position: relative; }
+.pg .done { color: #7ef0b4; position: relative; }
+
+/* ---------- scenes ---------- */
+.scene { position: absolute; inset: 0; }
+.qhead { left: 60px; top: 410px; display: flex; align-items: center; gap: 24px; }
+.qnum { width: 84px; height: 84px; border-radius: 50%; background: #fff; color: var(--navy-900); font-size: 46px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 8px rgba(255,154,31,.35); }
+.qhead h2 { font-size: 44px; font-weight: 900; }
+.qhead h2 small { font-size: 34px; color: #c6d4ea; font-weight: 700; }
+.qcard { left: 60px; width: 960px; background: var(--lav); color: var(--ink); border-radius: 28px; padding: 34px 40px;
+  font-size: 40px; line-height: 1.75; font-weight: 500; box-shadow: 0 14px 40px rgba(0,0,0,.28); }
+.qcard .pin { margin-right: 10px; }
+.blank { display: inline-block; min-width: 170px; border-bottom: 3px solid var(--ink); text-align: center; position: relative; height: 1.3em; vertical-align: -0.25em; margin: 0 6px; }
+.blank .fill.big { font-size: 1.25em; bottom: -6px; }
+.blank .fill { position: absolute; left: 0; right: 0; bottom: 2px; color: var(--green); font-weight: 900; }
+.stamp { right: 30px; top: -46px; width: 190px; height: 92px; border-radius: 18px; border: 5px solid var(--green); color: var(--green);
+  background: #fff; font-size: 44px; font-weight: 900; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(0,0,0,.25); }
+
+.opts { left: 60px; width: 960px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 30px; }
+.opt { position: relative; height: 108px; background: #fff; color: var(--ink); border-radius: 22px; display: flex; align-items: center;
+  padding: 0 34px; font-size: 42px; font-weight: 700; box-shadow: 0 8px 22px rgba(0,0,0,.18); }
+.opt .lab { margin-right: 16px; color: var(--muted); }
+.opt .ok { position: absolute; inset: 0; border-radius: 22px; border: 6px solid var(--green); background: rgba(18,166,99,.10); }
+.opt .dim { position: absolute; inset: 0; border-radius: 22px; background: rgba(9,22,42,.58); }
+.opt .chk { position: absolute; right: 22px; top: 50%; margin-top: -32px; width: 64px; height: 64px; border-radius: 50%; background: var(--green);
+  color: #fff; font-size: 40px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+
+.panel { left: 60px; width: 960px; background: #fff; color: var(--ink); border-radius: 28px; box-shadow: 0 14px 40px rgba(0,0,0,.28); overflow: hidden; }
+.panel .tag { position: absolute; left: 30px; top: 22px; font-size: 26px; font-weight: 700; color: var(--muted); }
+.kp { padding: 30px 36px 30px 50px; }
+.kp::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(var(--orange), var(--orange-2)); }
+.kp .row1 { display: flex; align-items: center; gap: 18px; }
+.kp .pill { flex: none; padding: 6px 18px; border-radius: 12px; background: var(--orange); color: #fff; font-size: 32px; font-weight: 900; }
+.kp h3 { font-size: 44px; font-weight: 900; }
+.kp .desc { margin-top: 14px; font-size: 34px; color: var(--muted); font-weight: 500; line-height: 1.5; }
+.kp .desc b { color: var(--ink); }
+.tip { margin-top: 16px; padding: 14px 22px; border-radius: 16px; background: #fff4e5; color: #8a4b00; font-size: 34px; font-weight: 700; }
+.ansbig { left: 60px; width: 960px; height: 190px; border-radius: 28px; background: linear-gradient(90deg, #12a663, #0e8f55);
+  display: flex; align-items: center; justify-content: center; gap: 30px; font-size: 52px; font-weight: 900; box-shadow: 0 14px 40px rgba(18,166,99,.4); }
+.ansbig .big { font-size: 96px; }
+.ansbig .c { width: 96px; height: 96px; border-radius: 50%; background: #fff; color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 60px; }
+
+/* ---------- intro ---------- */
+#avatar { left: 410px; top: 430px; width: 260px; height: 260px; border-radius: 50%; overflow: hidden; border: 8px solid var(--orange);
+  box-shadow: 0 0 0 14px rgba(255,154,31,.22), 0 20px 50px rgba(0,0,0,.4); background: #f2f2f2; }
+#avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 8%; transform: scale(1.65); transform-origin: 50% 12%; }
+#iname { left: 0; width: 1080px; top: 720px; text-align: center; }
+#iname h2 { font-size: 56px; font-weight: 900; }
+#iname p { margin-top: 8px; font-size: 30px; color: #c6d4ea; font-weight: 500; }
+#ititle1 { left: 0; width: 1080px; top: 880px; text-align: center; font-size: 92px; font-weight: 900; letter-spacing: 8px; }
+#ititle2 { left: 0; width: 1080px; top: 985px; text-align: center; font-size: 150px; font-weight: 900; letter-spacing: 12px;
+  background: linear-gradient(180deg, #ffd34d, #ff8a00); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 10px 30px rgba(255,138,0,.45)); }
+.ibub { top: 1220px; width: 250px; text-align: center; }
+.ibub .c { margin: 0 auto; width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(145deg, #234e88, #13325c);
+  border: 5px solid var(--orange); display: flex; align-items: center; justify-content: center; font-size: 80px; font-weight: 900; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+.ibub p { margin-top: 16px; font-size: 30px; font-weight: 700; color: #dbe6f6; }
+#iask { left: 0; width: 1080px; top: 1450px; text-align: center; font-size: 44px; font-weight: 900; color: var(--gold); }
+
+/* ---------- trick ---------- */
+#tt { left: 0; width: 1080px; top: 410px; text-align: center; font-size: 62px; font-weight: 900; }
+#tt i { font-style: normal; color: var(--orange); margin: 0 18px; }
+#old { left: 60px; top: 520px; width: 960px; height: 580px; border-radius: 28px; background: #e4e9f2; color: var(--ink); padding: 30px 40px; overflow: hidden; transform-origin: 50% 0; }
+#watch { right: 36px; top: 26px; padding: 8px 22px; border-radius: 16px; background: #fff; color: var(--red); font-size: 46px; font-weight: 900; font-variant-numeric: tabular-nums; }
+#scratch { left: 40px; top: 300px; width: 880px; height: 250px; border-top: 3px dashed #b8c2d3; }
+.scr { position: absolute; font-size: 30px; color: #4d5b72; white-space: nowrap; }
+#xmark { left: 0; top: 0; }
+#old .pill { display: inline-block; padding: 6px 20px; border-radius: 12px; background: #8693a8; color: #fff; font-size: 30px; font-weight: 900; }
+#old ul { list-style: none; margin-top: 18px; font-size: 40px; font-weight: 700; line-height: 1.6; }
+#old li.slow { color: var(--red); }
+#slow { right: 40px; top: 120px; padding: 8px 26px; border: 6px solid var(--red); border-radius: 16px; color: var(--red); font-size: 54px; font-weight: 900; background: rgba(255,255,255,.85); }
+#new { left: 60px; top: 975px; width: 960px; height: 190px; border-radius: 28px; background: linear-gradient(100deg, #ff9a1f, #ff5e00);
+  display: flex; align-items: center; justify-content: center; gap: 30px; box-shadow: 0 16px 50px rgba(255,106,0,.5); }
+#new .a { font-size: 54px; font-weight: 900; }
+#new .b { font-size: 84px; font-weight: 900; color: #fff7d6; text-shadow: 0 4px 0 rgba(0,0,0,.12); }
+.lock { top: 1195px; width: 465px; height: 330px; border-radius: 28px; background: #fff; color: var(--ink); padding: 30px 32px; overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,.3); }
+.lock h4 { font-size: 44px; font-weight: 900; }
+.lock .s { margin-top: 6px; font-size: 32px; font-weight: 700; color: var(--orange-2); }
+.lock .mask { margin-top: 22px; display: grid; gap: 14px; filter: blur(2px); }
+.lock .mask i { display: block; height: 30px; border-radius: 15px; background: #d8deea; }
+.lock .lk { position: absolute; left: 50%; top: 150px; margin-left: -56px; width: 112px; height: 112px; border-radius: 50%; background: var(--navy-800);
+  display: flex; align-items: center; justify-content: center; font-size: 56px; box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+.lock .rib { position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: var(--navy-800); color: var(--gold); font-size: 30px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center; }
+
+/* ---------- cta ---------- */
+#photo { left: 60px; top: 410px; width: 440px; height: 560px; border-radius: 32px; overflow: hidden; background: #f2f2f2;
+  border: 6px solid var(--orange); box-shadow: 0 0 0 12px rgba(255,154,31,.2), 0 24px 60px rgba(0,0,0,.45); }
+#photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+#cname { left: 540px; top: 400px; font-size: 120px; font-weight: 900; letter-spacing: 10px; }
+#crole { left: 546px; top: 560px; padding: 8px 22px; border-radius: 14px; background: var(--orange); font-size: 32px; font-weight: 900; }
+.cred { left: 546px; width: 480px; font-size: 34px; font-weight: 700; color: #e6eefb; }
+.cred b { color: var(--gold); margin-right: 10px; }
+#cpanel { left: 60px; top: 1020px; width: 960px; height: 440px; border-radius: 36px; background: linear-gradient(160deg, #ff9a1f, #ff5a00);
+  box-shadow: 0 20px 60px rgba(255,106,0,.45); text-align: center; padding-top: 44px; }
+#cpanel h3 { font-size: 70px; font-weight: 900; letter-spacing: 4px; }
+#cpanel .chips { margin-top: 26px; display: flex; justify-content: center; gap: 16px; }
+#cpanel .chips span { padding: 10px 22px; border-radius: 30px; background: rgba(255,255,255,.2); border: 2px solid rgba(255,255,255,.45); font-size: 31px; font-weight: 700; }
+#cbtn { left: 180px; top: 1300px; width: 720px; height: 132px; border-radius: 66px; background: #fff; color: var(--orange-2);
+  font-size: 58px; font-weight: 900; display: flex; align-items: center; justify-content: center; gap: 16px; box-shadow: 0 14px 36px rgba(120,40,0,.35); }
+
+/* ---------- caption ---------- */
+#cap { left: 40px; width: 1000px; top: 1560px; height: 150px; display: flex; align-items: center; justify-content: center; }
+#capbox { max-width: 1000px; padding: 16px 34px; border-radius: 22px; background: rgba(4,12,26,.62); font-size: 52px; font-weight: 900; line-height: 1.3;
+  text-align: center; letter-spacing: 1px; text-shadow: 0 3px 0 rgba(0,0,0,.35); }
+#capbox em { font-style: normal; color: var(--gold); }
+#fontwarm { position: absolute; left: -5000px; top: 0; font-weight: 900; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div id="glyphs"></div>
+
+<!-- header -->
+<div id="logo" class="abs"><img src="assets/logo.png" alt=""></div>
+<div id="hot" class="abs">🔥 高考必考</div>
+<div id="htitle" class="abs">
+  <h1>胡源专属<i>·</i>课前测试</h1>
+  <p><b>函数最值专项训练</b>答案速览 · 3 道题</p>
+</div>
+<div id="progress" class="abs">
+  <div class="pg" id="pg1"><div class="on"></div><span>第 1 题</span><span class="done">✓</span></div>
+  <div class="pg" id="pg2"><div class="on"></div><span>第 2 题</span><span class="done">✓</span></div>
+  <div class="pg" id="pg3"><div class="on"></div><span>第 3 题</span><span class="done">✓</span></div>
+</div>
+
+<!-- intro -->
+<section class="scene" id="s-intro">
+  <div id="avatar" class="abs"><img src="assets/teacher.jpg" alt=""></div>
+  <div id="iname" class="abs"><h2>胡源老师</h2><p>北京大学元培学院 · 北京市朝阳区理科状元</p></div>
+  <div id="ititle1" class="abs">课前测试</div>
+  <div id="ititle2" class="abs">答案揭晓</div>
+  <div class="ibub abs" style="left:125px"><div class="c">1</div><p>绝对值最值</p></div>
+  <div class="ibub abs" style="left:415px"><div class="c">2</div><p>绝对值最值</p></div>
+  <div class="ibub abs" style="left:705px"><div class="c">3</div><p>阿氏圆最值</p></div>
+  <div id="iask" class="abs">你能对几道？</div>
+</section>
+
+<!-- q1 -->
+<section class="scene" id="s-q1">
+  <div class="qhead abs"><div class="qnum">1</div><h2>选择题 <small>· 绝对值函数最值</small></h2></div>
+  <div class="qcard abs" style="top:520px">
+    <span class="pin">📌</span>已知函数 $y=|x-3|+2|x-1|+|x-2|$，则 $x$ 取<span class="blank"><span class="fill" id="q1-fill">$[1,2]$</span></span>时，$y$ 取得最小值。
+    <div class="stamp abs" id="q1-stamp">✓ 选 A</div>
+  </div>
+  <div class="opts abs" style="top:780px">
+    <div class="opt" id="q1-a"><span class="lab">A.</span>$[1,2]$<div class="ok"></div><div class="chk">✓</div></div>
+    <div class="opt" id="q1-b"><span class="lab">B.</span>$[2,3]$<div class="dim"></div></div>
+    <div class="opt" id="q1-c"><span class="lab">C.</span>$2$<div class="dim"></div></div>
+    <div class="opt" id="q1-d"><span class="lab">D.</span>$3$<div class="dim"></div></div>
+  </div>
+  <div class="panel abs" id="q1-nl" style="top:1040px;height:180px">
+    <svg width="960" height="180" viewBox="0 0 960 180">
+      <line x1="60" y1="96" x2="900" y2="96" stroke="#13213a" stroke-width="4"/>
+      <path d="M900 96 l-18 -10 v20 z" fill="#13213a"/>
+      <line id="q1-seg" x1="290" y1="96" x2="490" y2="96" stroke="#12a663" stroke-width="16" stroke-linecap="round" pathLength="1" stroke-dasharray="1" />
+      <g font-size="32" font-weight="700" text-anchor="middle" fill="#13213a" font-family="KaTeX_Main, serif">
+        <text x="90" y="146">0</text><text x="290" y="146">1</text><text x="490" y="146">2</text><text x="690" y="146">3</text>
+      </g>
+      <circle cx="290" cy="96" r="13" fill="#ff6a00"/><circle cx="490" cy="96" r="13" fill="#ff6a00"/><circle cx="690" cy="96" r="13" fill="#ff6a00"/>
+      <line x1="90" y1="86" x2="90" y2="106" stroke="#13213a" stroke-width="4"/>
+      <text x="270" y="78" font-size="28" font-weight="900" fill="#ff6a00" text-anchor="end">×2</text>
+      <g id="q1-min"><rect x="300" y="18" width="180" height="50" rx="12" fill="#12a663"/><text x="390" y="53" font-size="30" font-weight="900" fill="#fff" text-anchor="middle">y 最小</text></g>
+    </svg>
+    <div class="tag">数轴</div>
+  </div>
+  <div class="panel kp abs" id="q1-kp" style="top:1250px">
+    <div class="row1"><span class="pill">考点</span><h3>绝对值的几何意义</h3></div>
+    <div class="desc">$|x-a|$ = 数轴上 $x$ 到 $a$ 的<b>距离</b>，$y$ 就是<b>距离之和</b></div>
+    <div class="tip" id="q1-tip">💡 系数 2：$2|x-1|$ 看成两个 $|x-1|$</div>
+  </div>
+</section>
+
+<!-- q2 -->
+<section class="scene" id="s-q2">
+  <div class="qhead abs"><div class="qnum">2</div><h2>填空题 <small>· 绝对值函数最值</small></h2></div>
+  <div class="qcard abs" style="top:520px">
+    <span class="pin">📌</span>已知函数 $y=|x+1|+2|x-2|$，则当 $y$ 取得最小值时，$x=$<span class="blank"><span class="fill" id="q2-fill">$2$</span></span>。
+  </div>
+  <div class="ansbig abs" id="q2-ans" style="top:810px"><div class="c">✓</div><span>答案</span><span class="big">x = 2</span></div>
+  <div class="panel abs" id="q2-nl" style="top:1050px;height:180px">
+    <svg width="960" height="180" viewBox="0 0 960 180">
+      <line x1="60" y1="96" x2="900" y2="96" stroke="#13213a" stroke-width="4"/>
+      <path d="M900 96 l-18 -10 v20 z" fill="#13213a"/>
+      <g font-size="32" font-weight="700" text-anchor="middle" fill="#13213a" font-family="KaTeX_Main, serif">
+        <text x="250" y="146">−1</text><text x="410" y="146">0</text><text x="730" y="146">2</text>
+      </g>
+      <line x1="410" y1="86" x2="410" y2="106" stroke="#13213a" stroke-width="4"/>
+      <circle cx="250" cy="96" r="13" fill="#ff6a00"/>
+      <circle id="q2-ring" cx="730" cy="96" r="30" fill="none" stroke="#12a663" stroke-width="6"/>
+      <circle cx="730" cy="96" r="13" fill="#ff6a00"/>
+      <text x="730" y="52" font-size="28" font-weight="900" fill="#ff6a00" text-anchor="middle">×2</text>
+      <g id="q2-min"><rect x="470" y="14" width="190" height="50" rx="12" fill="#12a663"/><text x="565" y="49" font-size="30" font-weight="900" fill="#fff" text-anchor="middle">y 最小 ➜</text></g>
+    </svg>
+    <div class="tag">数轴</div>
+  </div>
+  <div class="panel kp abs" id="q2-kp" style="top:1270px">
+    <div class="row1"><span class="pill">考点</span><h3>带系数的绝对值和求最值</h3></div>
+    <div class="desc">思路同第 1 题：<b>拆系数</b> → <b>看距离</b></div>
+  </div>
+</section>
+
+<!-- q3 -->
+<section class="scene" id="s-q3">
+  <div class="qhead abs"><div class="qnum">3</div><h2>选择题 <small>· 圆模型 · 定比三角形</small></h2></div>
+  <div class="qcard abs" style="top:520px">
+    <span class="pin">📌</span>在 $\triangle ABC$ 中，$AB=2AC$，$BC=4$，则 $\triangle ABC$ 面积的最大值为<span class="blank"><span class="fill big" id="q3-fill">$\frac{16}{3}$</span></span>。
+    <div class="stamp abs" id="q3-stamp">✓ 选 B</div>
+  </div>
+  <div class="opts abs" style="top:740px">
+    <div class="opt" id="q3-a"><span class="lab">A.</span>$4$<div class="dim"></div></div>
+    <div class="opt" id="q3-b"><span class="lab">B.</span>$\dfrac{16}{3}$<div class="ok"></div><div class="chk">✓</div></div>
+    <div class="opt" id="q3-c"><span class="lab">C.</span>$8$<div class="dim"></div></div>
+    <div class="opt" id="q3-d"><span class="lab">D.</span>$\dfrac{32}{3}$<div class="dim"></div></div>
+  </div>
+  <div class="panel abs" id="q3-fig" style="top:990px;height:330px">
+    <svg width="960" height="330" viewBox="0 0 960 330">
+      <!-- B(-2,0) C(2,0) 圆心(10/3,0) r=8/3；1 单位 = 50px，原点 x=200 y=180 -->
+      <line x1="40" y1="180" x2="580" y2="180" stroke="#c3cad8" stroke-width="3"/>
+      <circle id="q3-circ" cx="366.7" cy="180" r="133.3" fill="rgba(255,154,31,.08)" stroke="#ff6a00" stroke-width="5" pathLength="1" stroke-dasharray="1"/>
+      <polygon id="q3-tri" points="100,180 300,180 366.7,46.7" fill="rgba(18,166,99,.16)" stroke="#12a663" stroke-width="5" stroke-linejoin="round"/>
+      <line id="q3-hl" x1="366.7" y1="180" x2="366.7" y2="46.7" stroke="#e5484d" stroke-width="6" stroke-dasharray="14 10"/>
+      <circle cx="366.7" cy="180" r="6" fill="#ff6a00"/>
+      <circle cx="100" cy="180" r="10" fill="#13213a"/><circle cx="300" cy="180" r="10" fill="#13213a"/>
+      <circle id="q3-A" cx="366.7" cy="46.7" r="12" fill="#12a663"/>
+      <g font-size="36" font-weight="700" font-style="italic" fill="#13213a" font-family="KaTeX_Main, serif">
+        <text x="82" y="222">B</text><text x="290" y="222">C</text><text id="q3-Al" x="383" y="38">A</text>
+      </g>
+    </svg>
+    <div class="abs" style="left:610px;top:34px;width:330px;color:#13213a">
+      <div style="font-size:40px;font-weight:900">$AB:AC=2:1$</div>
+      <div id="q3-r1" style="margin-top:24px;font-size:30px;font-weight:700;color:#e5484d">底边固定 · 高最大</div>
+      <div id="q3-r2" style="font-size:40px;font-weight:900;color:#e5484d">$h_{\max}=r$</div>
+      <div id="q3-r3" style="margin-top:16px;font-size:40px;font-weight:900;color:#12a663">$S_{\max}=\frac{16}{3}$</div>
+    </div>
+  </div>
+  <div class="panel kp abs" id="q3-kp" style="top:1345px;padding-top:24px;padding-bottom:24px">
+    <div class="row1"><span class="pill">考点</span><h3>阿波罗尼斯圆（阿氏圆）</h3></div>
+    <div class="desc" style="margin-top:8px">到两定点距离之比为定值（≠1）→ <b>轨迹是圆</b></div>
+  </div>
+</section>
+
+<!-- trick -->
+<section class="scene" id="s-trick">
+  <div id="tt" class="abs">常规解法<i>VS</i>胡源大招</div>
+  <div id="old" class="abs">
+    <span class="pill">常规解法</span>
+    <div id="watch" class="abs">⏱ 00:00</div>
+    <ul><li>① 零点分段讨论 · 画图</li><li>② 建系 · 列方程 · 解方程</li><li class="slow">一道题少说 3～5 分钟</li></ul>
+    <div id="scratch" class="abs">
+      <div class="scr" style="left:0;top:22px">$x<1:\ y=-4x+7$</div>
+      <div class="scr" style="left:0;top:76px">$1\le x<2:\ y=3$</div>
+      <div class="scr" style="left:0;top:130px">$2\le x<3:\ y=2x-1$</div>
+      <div class="scr" style="left:0;top:184px">$x\ge 3:\ y=4x-7$</div>
+      <div class="scr" style="left:390px;top:40px">$(x+2)^2+y^2=4[(x-2)^2+y^2]$</div>
+      <div class="scr" style="left:390px;top:104px">$3x^2+3y^2-20x+12=0$</div>
+      <div class="scr" style="left:390px;top:168px">$(x-\frac{10}{3})^2+y^2=\cdots$</div>
+    </div>
+    <svg id="xmark" class="abs" width="960" height="580" viewBox="0 0 960 580">
+      <line id="x1" x1="60" y1="90" x2="900" y2="520" stroke="#e5484d" stroke-width="12" stroke-linecap="round" pathLength="1" stroke-dasharray="1"/>
+      <line id="x2" x1="900" y1="90" x2="60" y2="520" stroke="#e5484d" stroke-width="12" stroke-linecap="round" pathLength="1" stroke-dasharray="1"/>
+    </svg>
+    <div id="slow" class="abs">太慢!</div>
+  </div>
+  <div id="new" class="abs"><span class="a">⚡ 胡源大招</span><span class="b">10 秒出答案</span></div>
+  <div class="lock abs" id="lock1" style="left:60px">
+    <h4>绝对值最值</h4><div class="s">一句口诀 · 秒出答案</div>
+    <div class="mask"><i style="width:92%"></i><i style="width:70%"></i><i style="width:84%"></i></div>
+    <div class="lk">🔒</div><div class="rib">体验课揭晓</div>
+  </div>
+  <div class="lock abs" id="lock2" style="left:555px">
+    <h4>阿氏圆</h4><div class="s">半径公式 · 直接口算</div>
+    <div class="mask"><i style="width:60%"></i><i style="width:88%"></i><i style="width:74%"></i></div>
+    <div class="lk">🔒</div><div class="rib">体验课揭晓</div>
+  </div>
+</section>
+
+<!-- cta -->
+<section class="scene" id="s-cta">
+  <div id="photo" class="abs"><img src="assets/teacher.jpg" alt=""></div>
+  <div id="cname" class="abs">胡源</div>
+  <div id="crole" class="abs">高中数学 · 主理人</div>
+  <div class="cred abs" style="top:650px"><b>★</b>北京大学元培学院毕业</div>
+  <div class="cred abs" style="top:715px"><b>★</b>北京市朝阳区理科状元</div>
+  <div class="cred abs" style="top:780px"><b>★</b>14 年教学经验</div>
+  <div class="cred abs" style="top:845px"><b>★</b>124 位学员考入北大清华</div>
+  <div class="cred abs" style="top:910px"><b>★</b>10 位学员高考数学满分</div>
+  <div id="cpanel" class="abs">
+    <h3>高二数学体验课</h3>
+    <div class="chips"><span>绝对值最值口诀</span><span>阿氏圆半径口算</span><span>高考命题思维</span></div>
+  </div>
+  <div id="cbtn" class="abs">▶ 我们直播间见</div>
+</section>
+
+<div id="cap" class="abs"><div id="capbox"></div></div>
+<div id="fontwarm"></div>
+
+<script>
+// ------------------------------------------------------------------ math
+document.querySelectorAll('.qcard, .opt, .desc, .tip, #q3-fig div, .scr').forEach(el => {
+  el.innerHTML = el.innerHTML.replace(/\$([^$]+)\$/g, (_, tex) =>
+    katex.renderToString(tex.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'), { throwOnError: false }));
+});
+
+// ------------------------------------------------------------------ engine
+const TL = window.TIMELINE;
+const L = id => TL.lines[id];
+const C = n => TL.cues[n].t;
+const S = n => TL.scenes[n];
+const $ = s => document.querySelector(s);
+const E = {
+  lin: p => p,
+  out: p => 1 - Math.pow(1 - p, 3),
+  inout: p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2,
+  back: p => { const c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); },
+};
+const DEF = { o: 1, x: 0, y: 0, s: 1, r: 0, dash: 0, sx: 1 };
+const tracks = new Map();
+const fxs = [];
+
+function key(sel, t, props, ease = 'out') {
+  const el = typeof sel === 'string' ? $(sel) : sel;
+  if (!el) throw new Error('missing ' + sel);
+  if (!tracks.has(el)) tracks.set(el, {});
+  const tr = tracks.get(el);
+  for (const [k, v] of Object.entries(props)) (tr[k] = tr[k] || []).push([t, v, E[ease]]);
+}
+function enter(sel, t, o = {}) {
+  const d = o.dur ?? 0.45;
+  key(sel, t, { o: 0, y: o.y ?? 40, x: o.x ?? 0, s: o.s ?? 1 });
+  key(sel, t + d, { o: 1, y: 0, x: 0, s: 1 }, o.ease ?? 'back');
+}
+function fx(t0, t1, fn) { fxs.push([t0, t1, fn]); }
+
+function valueAt(list, t) {
+  if (t <= list[0][0]) return list[0][1];
+  for (let i = 1; i < list.length; i++) {
+    const [t1, v1, e] = list[i];
+    if (t < t1) {
+      const [t0, v0] = list[i - 1];
+      const p = t1 > t0 ? e((t - t0) / (t1 - t0)) : 1;
+      return v0 + (v1 - v0) * p;
+    }
+  }
+  return list[list.length - 1][1];
+}
+
+// ------------------------------------------------------------------ choreography
+const T0 = (id) => L(id).start;
+
+// 背景漂浮符号
+const GLYPHS = ['|x|', 'Σ', 'π', '△', '⊙', '√2', 'f(x)', '∞', 'r', 'y=|x−a|', 'λ', 'min'];
+const glyphEls = GLYPHS.map((g, i) => {
+  const d = document.createElement('div');
+  d.className = 'glyph'; d.textContent = g;
+  d.style.fontSize = (54 + (i * 37) % 70) + 'px';
+  $('#glyphs').appendChild(d);
+  return d;
+});
+fx(0, 1e9, (_, t) => glyphEls.forEach((d, i) => {
+  const bx = (i * 173 + 60) % 980, by = (i * 331 + 200) % 1900;
+  const y = ((by - t * (18 + i % 4 * 6)) % 2000 + 2000) % 2000 - 60;
+  d.style.transform = `translate(${bx + 26 * Math.sin(t * .6 + i)}px, ${y}px) rotate(${-12 + (i * 7) % 24}deg)`;
+}));
+
+// header
+enter('#logo', 0.05, { y: -30, dur: 0.5 });
+enter('#hot', 0.2, { y: -30, dur: 0.5 });
+key('#htitle', 0, { o: 0 }); key('#progress', 0, { o: 0 });
+enter('#htitle', S('q1').start - 0.35, { y: -20 });
+enter('#progress', S('q1').start - 0.25, { y: -20 });
+key('#htitle', S('q3').out, { o: 1, y: 0 }); key('#htitle', S('q3').out + 0.3, { o: 0, y: -20 });
+key('#progress', S('q3').out, { o: 1, y: 0 }); key('#progress', S('q3').out + 0.3, { o: 0, y: -20 });
+['q1', 'q2', 'q3'].forEach((q, i) => {
+  const pg = `#pg${i + 1}`;
+  key(`${pg} .on`, 0, { o: 0 });
+  key(`${pg} .on`, S(q).start - 0.2, { o: 0 }); key(`${pg} .on`, S(q).start, { o: 1 });
+  key(`${pg} .on`, S(q).out, { o: 1 }); key(`${pg} .on`, S(q).out + 0.25, { o: 0 });
+  key(`${pg} .done`, 0, { o: 0, s: 0.3 });
+  key(`${pg} .done`, C(q + '_ans'), { o: 0, s: 0.3 }); key(`${pg} .done`, C(q + '_ans') + 0.35, { o: 1, s: 1 }, 'back');
+});
+
+// scene in / out
+Object.entries(TL.scenes).forEach(([name, sc], i) => {
+  const el = `#s-${name}`;
+  if (i === 0) key(el, 0, { o: 1 });
+  else { key(el, 0, { o: 0 }); key(el, sc.start - 0.4, { o: 0, y: 70 }); key(el, sc.start - 0.05, { o: 1, y: 0 }); }
+  key(el, sc.out, { o: 1, y: 0 }, 'inout'); key(el, sc.out + 0.3, { o: 0, y: -60 }, 'inout');
+});
+
+// intro
+enter('#avatar', 0.0, { s: 0.4, y: 0, dur: 0.5 });
+enter('#iname', 0.2, { y: 30 });
+enter('#ititle1', 0.45, { y: 50 });
+enter('#ititle2', 0.7, { s: 1.6, y: 0, dur: 0.5 });
+document.querySelectorAll('.ibub').forEach((b, i) => enter(b, T0('L02') + 0.1 + i * 0.22, { s: 0.3, y: 0, dur: 0.45 }));
+enter('#iask', T0('L02') + 0.9, { y: 30 });
+fx(T0('L02') + 1.4, 1e9, (_, t) => { $('#iask').style.transform = `translateY(${-8 * Math.abs(Math.sin(t * 5))}px)`; });
+
+// q1 / q3：选择题揭晓
+function revealChoice(q, right, others, ansCue) {
+  const t = C(ansCue);
+  key(`#${q}-${right} .ok`, 0, { o: 0 }); key(`#${q}-${right} .ok`, t, { o: 0 }); key(`#${q}-${right} .ok`, t + 0.2, { o: 1 });
+  key(`#${q}-${right} .chk`, 0, { o: 0, s: 0 }); key(`#${q}-${right} .chk`, t, { o: 0, s: 0 }); key(`#${q}-${right} .chk`, t + 0.35, { o: 1, s: 1 }, 'back');
+  key(`#${q}-${right}`, t, { s: 1 }); key(`#${q}-${right}`, t + 0.15, { s: 1.06 }); key(`#${q}-${right}`, t + 0.4, { s: 1 });
+  others.forEach(o => { key(`#${q}-${o} .dim`, 0, { o: 0 }); key(`#${q}-${o} .dim`, t, { o: 0 }); key(`#${q}-${o} .dim`, t + 0.3, { o: 1 }); });
+  key(`#${q}-stamp`, 0, { o: 0, s: 2.2, r: -18 });
+  key(`#${q}-stamp`, t + 0.1, { o: 0, s: 2.2, r: -18 }); key(`#${q}-stamp`, t + 0.4, { o: 1, s: 1, r: -8 }, 'out');
+}
+['#q1-a', '#q1-b', '#q1-c', '#q1-d'].forEach((s, i) => enter(s, S('q1').start + 0.1 + i * 0.06, { y: 30, dur: 0.35 }));
+revealChoice('q1', 'a', ['b', 'c', 'd'], 'q1_ans');
+key('#q1-fill', 0, { o: 0, s: 0.4 }); key('#q1-fill', C('q1_ans') + 0.2, { o: 0, s: 0.4 }); key('#q1-fill', C('q1_ans') + 0.5, { o: 1, s: 1 }, 'back');
+enter('#q1-nl', C('q1_line'), { y: 50 });
+key('#q1-seg', 0, { dash: 1 }); key('#q1-seg', C('q1_line') + 0.3, { dash: 1 }); key('#q1-seg', C('q1_line') + 1.0, { dash: 0 }, 'inout');
+enter('#q1-min', C('q1_line') + 0.9, { s: 0.5, y: 10 });
+enter('#q1-kp', C('q1_kp'), { y: 60 });
+enter('#q1-tip', C('q1_tip'), { x: -40, y: 0 });
+
+// q2
+enter('#q2-ans', C('q2_ans') - 0.1, { s: 0.6, y: 0, dur: 0.45 });
+key('#q2-fill', 0, { o: 0, s: 0.4 }); key('#q2-fill', C('q2_ans'), { o: 0, s: 0.4 }); key('#q2-fill', C('q2_ans') + 0.3, { o: 1, s: 1 }, 'back');
+enter('#q2-kp', C('q2_kp'), { y: 60 });
+enter('#q2-nl', C('q2_line'), { y: 50 });
+enter('#q2-min', C('q2_line') + 0.5, { x: -30, y: 0 });
+fx(C('q2_line') + 0.4, 1e9, (_, t) => {
+  const p = ((t * 1.2) % 1);
+  const ring = $('#q2-ring');
+  ring.setAttribute('r', 16 + 26 * p); ring.style.opacity = 1 - p;
+});
+
+// q3
+['#q3-a', '#q3-b', '#q3-c', '#q3-d'].forEach((s, i) => enter(s, S('q3').start + 0.1 + i * 0.06, { y: 30, dur: 0.35 }));
+revealChoice('q3', 'b', ['a', 'c', 'd'], 'q3_ans');
+key('#q3-fill', 0, { o: 0, s: 0.4 }); key('#q3-fill', C('q3_frac'), { o: 0, s: 0.4 }); key('#q3-fill', C('q3_frac') + 0.3, { o: 1, s: 1 }, 'back');
+enter('#q3-kp', C('q3_kp'), { y: 60 });
+enter('#q3-fig', C('q3_kp') + 0.15, { y: 50 });
+key('#q3-circ', 0, { dash: 1 }); key('#q3-circ', C('q3_circle'), { dash: 1 }); key('#q3-circ', C('q3_circle') + 1.2, { dash: 0 }, 'inout');
+// A 沿圆周移动到最高点，三角形跟着变
+const cx = 366.7, cy = 180, R = 133.3;
+fx(C('q3_circle') + 0.6, L('L11').start + 0.6, (p) => {
+  const a = (150 - 60 * E.inout(p)) * Math.PI / 180;        // 150° → 90°（最高点）
+  const ax = cx + R * Math.cos(a), ay = cy - R * Math.sin(a);
+  $('#q3-A').setAttribute('cx', ax); $('#q3-A').setAttribute('cy', ay);
+  $('#q3-Al').setAttribute('x', ax + 16); $('#q3-Al').setAttribute('y', ay - 8);
+  $('#q3-tri').setAttribute('points', `100,180 300,180 ${ax},${ay}`);
+});
+key('#q3-A', 0, { o: 0 }); key('#q3-A', C('q3_circle') + 0.5, { o: 0 }); key('#q3-A', C('q3_circle') + 0.7, { o: 1 });
+key('#q3-Al', 0, { o: 0 }); key('#q3-Al', C('q3_circle') + 0.5, { o: 0 }); key('#q3-Al', C('q3_circle') + 0.7, { o: 1 });
+key('#q3-tri', 0, { o: 0 }); key('#q3-tri', C('q3_circle') + 0.5, { o: 0 }); key('#q3-tri', C('q3_circle') + 0.8, { o: 1 });
+key('#q3-hl', 0, { o: 0 }); key('#q3-hl', C('q3_h'), { o: 0 }); key('#q3-hl', C('q3_h') + 0.4, { o: 1 });
+enter('#q3-r1', C('q3_h'), { x: 30, y: 0 });
+enter('#q3-r2', C('q3_h') + 0.25, { x: 30, y: 0 });
+enter('#q3-r3', C('q3_h') + 0.9, { s: 0.5, y: 0 });
+
+// trick
+enter('#tt', S('trick').start, { y: -30 });
+enter('#old', C('tr_old'), { y: 50 });
+document.querySelectorAll('.scr').forEach((el, i) => {
+  const t = C('tr_old') + 0.5 + i * (L('L12').end - L('L12').start - 1.0) / 7;
+  key(el, 0, { o: 0 }); key(el, t, { o: 0, x: -20 }); key(el, t + 0.25, { o: 1, x: 0 });
+});
+fx(C('tr_old') + 0.3, L('L12').end, (p) => {      // 秒表飞快走到 4:59
+  const sec = Math.round(299 * Math.pow(p, 1.3));
+  $('#watch').textContent = `⏱ 0${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+});
+key('#x1', 0, { dash: 1 }); key('#x1', C('tr_strike'), { dash: 1 }); key('#x1', C('tr_strike') + 0.22, { dash: 0 });
+key('#x2', 0, { dash: 1 }); key('#x2', C('tr_strike') + 0.18, { dash: 1 }); key('#x2', C('tr_strike') + 0.4, { dash: 0 });
+key('#slow', 0, { o: 0, s: 2, r: -20 }); key('#slow', C('tr_strike') + 0.35, { o: 0, s: 2, r: -20 }); key('#slow', C('tr_strike') + 0.65, { o: 1, s: 1, r: -10 });
+key('#old', C('tr_new') - 0.1, { o: 1, s: 1 }); key('#old', C('tr_new') + 0.35, { o: 0.6, s: 0.76 }, 'inout');
+enter('#new', C('tr_new'), { s: 0.5, y: 0, dur: 0.5 });
+fx(C('tr_new') + 0.6, 1e9, (_, t) => { $('#new').style.boxShadow = `0 16px ${50 + 30 * Math.sin(t * 6)}px rgba(255,106,0,${.45 + .2 * Math.sin(t * 6)})`; });
+enter('#lock1', C('tr_lock1'), { y: 80 });
+enter('#lock2', C('tr_lock2'), { y: 80 });
+['#lock1 .lk', '#lock2 .lk'].forEach((s, i) => fx(C(i ? 'tr_lock2' : 'tr_lock1') + 0.5, 1e9, (_, t) => {
+  $(s).style.transform = `rotate(${8 * Math.sin(t * 9) * Math.max(0, Math.sin(t * 1.6))}deg)`;
+}));
+
+// cta
+enter('#photo', C('cta_in'), { x: -80, y: 0, dur: 0.5 });
+enter('#cname', C('cta_in') + 0.25, { x: 60, y: 0 });
+enter('#crole', C('cta_in') + 0.45, { x: 60, y: 0 });
+document.querySelectorAll('.cred').forEach((c, i) => enter(c, C('cta_in') + 0.7 + i * 0.22, { x: 50, y: 0, dur: 0.35 }));
+enter('#cpanel', T0('L16') - 0.2, { y: 80 });
+enter('#cbtn', C('cta_btn') - 0.15, { s: 0.5, y: 0 });
+fx(C('cta_btn') + 0.4, 1e9, (_, t) => { $('#cbtn').style.transform = `scale(${1 + 0.045 * Math.sin(t * 7)})`; });
+
+// ------------------------------------------------------------------ captions
+const KEYWORDS = ['选A', '选B', 'x等于2', '三分之十六', '1到2之间', '几何意义', '距离之和', '两个绝对值', '阿波罗尼斯圆', '轨迹就是一个圆',
+  '半径就是最大的高', '三五分钟', '大招', '一句口诀', '直接口算', '胡源老师', '高二数学体验课', '直播间见', '带系数'];
+function capHTML(s) {
+  let h = s;
+  KEYWORDS.forEach(k => { h = h.split(k).join(`<em>${k}</em>`); });
+  return h;
+}
+const caps = TL.captions.map((c, i) => ({ ...c, html: capHTML(c.text), until: (TL.captions[i + 1] && TL.captions[i + 1].start - c.end < 0.4) ? TL.captions[i + 1].start : c.end + 0.15 }));
+$('#fontwarm').textContent = TL.captions.map(c => c.text).join('') + '0123456789✓★▶⚡🔒🔥📌💡';
+let lastCap = null;
+function renderCaption(t) {
+  const c = caps.find(c => t >= c.start && t < c.until);
+  const box = $('#capbox');
+  if (!c) { box.style.opacity = 0; return; }
+  if (c !== lastCap) { box.innerHTML = c.html; lastCap = c; }
+  const p = Math.min(1, (t - c.start) / 0.12);
+  box.style.opacity = 1;
+  box.style.transform = `scale(${0.92 + 0.08 * E.out(p)})`;
+}
+
+// ------------------------------------------------------------------ render
+function render(t) {
+  for (const [el, tr] of tracks) {
+    const v = {};
+    for (const k in DEF) v[k] = tr[k] ? valueAt(tr[k], t) : DEF[k];
+    if (tr.o) el.style.opacity = v.o;
+    if (tr.x || tr.y || tr.s || tr.r) el.style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.s}) rotate(${v.r}deg)`;
+    if (tr.sx) el.style.transform = `scaleX(${v.sx})`;
+    if (tr.dash) el.style.strokeDashoffset = v.dash;
+  }
+  for (const [t0, t1, fn] of fxs) if (t >= t0) fn(Math.min(1, (t - t0) / (t1 - t0)), t);
+  renderCaption(t);
+}
+window.render = render;
+document.fonts.ready.then(() => { render(0); window.READY = true; });
+</script>
+</body>
+</html>

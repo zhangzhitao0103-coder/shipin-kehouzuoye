@@ -1,0 +1,12 @@
+{
+  "name": "huyuan-quiz-video",
+  "private": true,
+  "description": "胡源课前测答案速览视频（竖屏 1080x1920）",
+  "scripts": {
+    "render": "node render.js"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-sc": "5.1.1",
+    "katex": "0.16.11"
+  }
+}
